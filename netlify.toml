@@ -4,7 +4,10 @@
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "18"
+  # Use Node 16 for compatibility with react-scripts 4 / webpack 4
+  NODE_VERSION = "16.20.2"
+  # Ensure OpenSSL legacy provider is enabled in the build environment
+  NODE_OPTIONS = "--openssl-legacy-provider"
   NPM_FLAGS = "--legacy-peer-deps"
 
 [dev]
