@@ -61,16 +61,25 @@ export default function LandingScreen() {
             <div>
               <h2 className="section-title">About Astro Mahri</h2>
               <p className="section-lead">
-                A retro-future playground for art, music, indie games, and small-batch gear.
-                Expect neon vibes, synth textures, and tactile merch designed for real humans.
+                A retro-future playground for art, music, indie games, and
+                small-batch gear. Expect neon vibes, synth textures, and tactile
+                merch designed for real humans.
               </p>
               <div className="cta-row">
-                <Link className="btn-primary" to="/#media">Explore Media</Link>
-                <Link className="btn-secondary" to="/#merch">Shop Merch</Link>
+                <Link className="btn-primary" to="/#media">
+                  Explore Media
+                </Link>
+                <Link className="btn-secondary" to="/#merch">
+                  Shop Merch
+                </Link>
               </div>
             </div>
             <div className="about-media">
-              <img src="/images/logo2.png" alt="Astro Mahri Logo" className="about-img" />
+              <img
+                src="/images/logo2.png"
+                alt="Astro Mahri Logo"
+                className="about-img"
+              />
             </div>
           </div>
         </div>
@@ -80,7 +89,9 @@ export default function LandingScreen() {
       <section id="media" className="section section-media">
         <div className="container">
           <h2 className="section-title">Media + Content</h2>
-          <p className="section-lead">Audio sessions, performance clips, and behind-the-scenes.</p>
+          <p className="section-lead">
+            Audio sessions, performance clips, and behind-the-scenes.
+          </p>
           <div className="grid three">
             <article className="card">
               <img src="/images/p1.jpg" alt="Session 01" />
@@ -105,7 +116,9 @@ export default function LandingScreen() {
             </article>
           </div>
           <div className="cta-row">
-            <Link className="btn-ghost" to="/media">View Library →</Link>
+            <Link className="btn-ghost" to="/media">
+              View Library →
+            </Link>
           </div>
         </div>
       </section>
@@ -115,21 +128,26 @@ export default function LandingScreen() {
         <div className="container">
           <h2 className="section-title">Game Library</h2>
           <p className="section-lead">
-            Micro-games and experiments. Unlock achievements, compare scores, and discover secrets.
+            Micro-games and experiments. Unlock achievements, compare scores,
+            and discover secrets.
           </p>
           <div className="grid two">
             <article className="card">
               <div className="card-body">
                 <h3>Frequency Match</h3>
                 <p>Align the signal — tune, listen, and lock in.</p>
-                <Link className="btn-primary" to="/games">Play Now</Link>
+                <Link className="btn-primary" to="/games">
+                  Play Now
+                </Link>
               </div>
             </article>
             <article className="card">
               <div className="card-body">
                 <h3>More Experiments</h3>
                 <p>New prototypes drop regularly — stay tuned.</p>
-                <Link className="btn-secondary" to="/games">Browse Games</Link>
+                <Link className="btn-secondary" to="/games">
+                  Browse Games
+                </Link>
               </div>
             </article>
           </div>
@@ -152,7 +170,9 @@ export default function LandingScreen() {
             </div>
           )}
           <div className="cta-row">
-            <Link className="btn-ghost" to="/merch">See All Products →</Link>
+            <Link className="btn-ghost" to="/merch">
+              See All Products →
+            </Link>
           </div>
         </div>
       </section>
@@ -161,16 +181,42 @@ export default function LandingScreen() {
       <section id="contact" className="section section-contact">
         <div className="container">
           <h2 className="section-title">Contact</h2>
-          <p className="section-lead">Booking, collabs, licensing — say hello.</p>
+          <p className="section-lead">
+            Booking, collabs, licensing — say hello.
+          </p>
           <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
             <div className="grid two">
-              <input className="input" name="name" placeholder="Your name" required />
-              <input className="input" type="email" name="email" placeholder="Email" required />
+              <input
+                className="input"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+              <input
+                className="input"
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
             </div>
-            <textarea className="input" name="message" rows="5" placeholder="Message" required />
+            <textarea
+              className="input"
+              name="message"
+              rows="5"
+              placeholder="Message"
+              required
+            />
             <div className="cta-row">
-              <button className="btn-primary" type="submit">Send</button>
-              <Link className="btn-secondary" to="mailto:hello@astromahri.space">Email Instead</Link>
+              <button className="btn-primary" type="submit">
+                Send
+              </button>
+              <Link
+                className="btn-secondary"
+                to="mailto:hello@astromahri.space"
+              >
+                Email Instead
+              </Link>
             </div>
           </form>
         </div>

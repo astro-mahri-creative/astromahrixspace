@@ -141,6 +141,7 @@ io.on("connection", (socket) => {
       const user = users.find((x) => x._id === message._id && x.online);
       if (user) {
         io.to(user.socketId).emit("message", message);
+        user.messages = user.messages || [];
         user.messages.push(message);
       }
     } else {
@@ -148,7 +149,10 @@ io.on("connection", (socket) => {
       if (admin) {
         io.to(admin.socketId).emit("message", message);
         const user = users.find((x) => x._id === message._id && x.online);
-        user.messages.push(message);
+        if (user) {
+          user.messages = user.messages || [];
+          user.messages.push(message);
+        }
       } else {
         io.to(socket.id).emit("message", {
           name: "Admin",

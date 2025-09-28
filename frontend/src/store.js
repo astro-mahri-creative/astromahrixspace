@@ -1,6 +1,8 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import { cartReducer } from './reducers/cartReducers';
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import thunk from "redux-thunk";
+
+// Import all reducers
+import { cartReducer } from "./reducers/cartReducers";
 import {
   orderCreateReducer,
   orderDeleteReducer,
@@ -10,7 +12,7 @@ import {
   orderMineListReducer,
   orderPayReducer,
   orderSummaryReducer,
-} from './reducers/orderReducers';
+} from "./reducers/orderReducers";
 import {
   productCategoryListReducer,
   productCreateReducer,
@@ -19,7 +21,7 @@ import {
   productListReducer,
   productReviewCreateReducer,
   productUpdateReducer,
-} from './reducers/productReducers';
+} from "./reducers/productReducers";
 import {
   userAddressMapReducer,
   userDeleteReducer,
@@ -30,22 +32,27 @@ import {
   userTopSellerListReducer,
   userUpdateProfileReducer,
   userUpdateReducer,
-} from './reducers/userReducers';
+} from "./reducers/userReducers";
+
+// Get initial state from localStorage with error handling
+const getLocalStorageItem = (key, defaultValue) => {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.warn(`Error parsing localStorage item '${key}':`, error);
+    return defaultValue;
+  }
+};
 
 const initialState = {
   userSignin: {
-    userInfo: localStorage.getItem('userInfo')
-      ? JSON.parse(localStorage.getItem('userInfo'))
-      : null,
+    userInfo: getLocalStorageItem("userInfo", null),
   },
   cart: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
-      : [],
-    shippingAddress: localStorage.getItem('shippingAddress')
-      ? JSON.parse(localStorage.getItem('shippingAddress'))
-      : {},
-    paymentMethod: 'PayPal',
+    cartItems: getLocalStorageItem("cartItems", []),
+    shippingAddress: getLocalStorageItem("shippingAddress", {}),
+    paymentMethod: "PayPal",
   },
 };
 const reducer = combineReducers({

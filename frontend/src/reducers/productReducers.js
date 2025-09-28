@@ -1,4 +1,4 @@
-const {
+import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
@@ -24,7 +24,7 @@ const {
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
   PRODUCT_REVIEW_CREATE_RESET,
-} = require('../constants/productConstants');
+} from "../constants/productConstants.js";
 
 export const productListReducer = (
   state = { loading: true, products: [] },

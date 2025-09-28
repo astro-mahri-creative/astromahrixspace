@@ -9,8 +9,8 @@
 
 .retro-root {
   position: relative;
-  min-height: calc(100vh - 8rem);
-  margin: -1rem; /* stretch to edges of main content */
+  min-height: 100vh;
+  margin: 0;
   background: radial-gradient(
       1200px 600px at 50% 0%,
       rgba(22, 224, 189, 0.06),
@@ -23,12 +23,14 @@
 .retro-stars {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: radial-gradient(2px 2px at 10% 20%, #fff8, transparent 40%),
     radial-gradient(2px 2px at 80% 30%, #fff5, transparent 40%),
     radial-gradient(1px 1px at 30% 70%, #fff5, transparent 40%),
     radial-gradient(1px 1px at 60% 50%, #fff7, transparent 40%);
   filter: drop-shadow(0 0 6px #fff4);
   animation: twinkle 6s infinite ease-in-out;
+  z-index: 0;
 }
 
 @keyframes twinkle {
@@ -47,6 +49,7 @@
   right: -10vw;
   bottom: -2rem;
   height: 50vh;
+  z-index: 1;
   background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.3)),
     repeating-linear-gradient(#0000, #0000 22px, #0002 22px, #0002 24px),
     linear-gradient(transparent 0 48%, var(--grid) 48% 52%, transparent 52%),
@@ -78,6 +81,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent; /* ensure gradient text is visible in WebKit/Blink */
   text-shadow: 0 0 20px #16e0bd33, 0 0 40px #ff2aad22;
   font-size: clamp(2.25rem, 4.5vw, 5rem);
 }

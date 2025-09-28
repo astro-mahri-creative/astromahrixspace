@@ -1,43 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { signout } from "./actions/userActions";
+import { listProductCategories } from "./actions/productActions";
+
+// Route Components
 import AdminRoute from "./components/AdminRoute.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import CartScreen from "./screens/CartScreen";
-import HomeScreen from "./screens/HomeScreen";
-import LandingScreen from "./screens/LandingScreen";
-import MediaLibraryScreen from "./screens/MediaLibraryScreen";
-import GameLibraryScreen from "./screens/GameLibraryScreen";
-// Merch renders the product catalog (former HomeScreen) at /merch
-import ContactScreen from "./screens/ContactScreen";
-import OrderHistoryScreen from "./screens/OrderHistoryScreen";
-import OrderScreen from "./screens/OrderScreen";
-import PaymentMethodScreen from "./screens/PaymentMethodScreen";
-import PlaceOrderScreen from "./screens/PlaceOrderScreen";
-import ProductListScreen from "./screens/ProductListScreen";
-import ProductScreen from "./screens/ProductScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import RegisterScreen from "./screens/RegisterScreen";
-import ShippingAddressScreen from "./screens/ShippingAddressScreen";
-import SigninScreen from "./screens/SigninScreen";
-import ProductEditScreen from "./screens/ProductEditScreen";
-import OrderListScreen from "./screens/OrderListScreen";
-import UserListScreen from "./screens/UserListScreen";
-import UserEditScreen from "./screens/UserEditScreen";
 import SellerRoute from "./components/SellerRoute.jsx";
-import SellerScreen from "./screens/SellerScreen";
+
+// UI Components
 import SearchBox from "./components/SearchBox.jsx";
-import SearchScreen from "./screens/SearchScreen";
-import { listProductCategories } from "./actions/productActions";
 import LoadingBox from "./components/LoadingBox.jsx";
 import MessageBox from "./components/MessageBox.jsx";
-import MapScreen from "./screens/MapScreen";
-import DashboardScreen from "./screens/DashboardScreen";
-import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox.jsx";
 
+// Screen Components
+import CartScreen from "./screens/CartScreen.jsx";
+import HomeScreen from "./screens/HomeScreen.jsx";
+import LandingScreen from "./screens/LandingScreen.jsx";
+import MediaLibraryScreen from "./screens/MediaLibraryScreen.jsx";
+import GameLibraryScreen from "./screens/GameLibraryScreen.jsx";
+import ContactScreen from "./screens/ContactScreen.jsx";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen.jsx";
+import OrderScreen from "./screens/OrderScreen.jsx";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen.jsx";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen.jsx";
+import ProductListScreen from "./screens/ProductListScreen.jsx";
+import ProductScreen from "./screens/ProductScreen.jsx";
+import ProfileScreen from "./screens/ProfileScreen.jsx";
+import RegisterScreen from "./screens/RegisterScreen.jsx";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen.jsx";
+import SigninScreen from "./screens/SigninScreen.jsx";
+import ProductEditScreen from "./screens/ProductEditScreen.jsx";
+import OrderListScreen from "./screens/OrderListScreen.jsx";
+import UserListScreen from "./screens/UserListScreen.jsx";
+import UserEditScreen from "./screens/UserEditScreen.jsx";
+import SellerScreen from "./screens/SellerScreen.jsx";
+import SearchScreen from "./screens/SearchScreen.jsx";
+import MapScreen from "./screens/MapScreen.jsx";
+import DashboardScreen from "./screens/DashboardScreen.jsx";
+import SupportScreen from "./screens/SupportScreen.jsx";
+
 function App() {
+  console.log("[App] mounted");
   const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const { cartItems } = cart;
@@ -58,25 +64,9 @@ function App() {
     dispatch(listProductCategories());
   }, [dispatch]);
 
-  // Smooth-scroll to hash anchors for one-page layout sections
-  const ScrollToHash = () => {
-    const { hash } = useLocation();
-    useEffect(() => {
-      if (hash) {
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    }, [hash]);
-    return null;
-  };
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <ScrollToHash />
         <header className="row">
           <div>
             <button
@@ -180,7 +170,7 @@ function App() {
                 className="close-sidebar"
                 type="button"
               >
-                {React.createElement("i", { className: "fa fa-close" })}
+                <i className="fa fa-close"></i>
               </button>
             </li>
             {loadingCategories ? (
@@ -209,17 +199,9 @@ function App() {
             <Route path="/media" element={<MediaLibraryScreen />}></Route>
             <Route path="/games" element={<GameLibraryScreen />}></Route>
             <Route path="/merch" element={<HomeScreen />}></Route>
-            <Route path="/contact" element={<ContactScreen />}></Route>
-            <Route
-              path="/product/:id"
-              element={<ProductScreen />}
-              exact
-            ></Route>
-            <Route
-              path="/product/:id/edit"
-              element={<ProductEditScreen />}
-              exact
-            ></Route>
+            <Route path="/contact" element={<ContactScreen />} />
+            <Route path="/product/:id" element={<ProductScreen />} />
+            <Route path="/product/:id/edit" element={<ProductEditScreen />} />
             <Route path="/signin" element={<SigninScreen />}></Route>
             <Route path="/register" element={<RegisterScreen />}></Route>
             <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
@@ -230,27 +212,20 @@ function App() {
               path="/orderhistory"
               element={<OrderHistoryScreen />}
             ></Route>
-            <Route path="/search/name" element={<SearchScreen />} exact></Route>
-            <Route
-              path="/search/name/:name"
-              element={<SearchScreen />}
-              exact
-            ></Route>
+            <Route path="/search/name" element={<SearchScreen />} />
+            <Route path="/search/name/:name" element={<SearchScreen />} />
             <Route
               path="/search/category/:category"
               element={<SearchScreen />}
-              exact
-            ></Route>
+            />
             <Route
               path="/search/category/:category/name/:name"
               element={<SearchScreen />}
-              exact
-            ></Route>
+            />
             <Route
               path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
               element={<SearchScreen />}
-              exact
-            ></Route>
+            />
 
             <Route
               path="/profile"
@@ -343,7 +318,7 @@ function App() {
               }
             />
 
-            <Route path="/" element={<LandingScreen />} exact></Route>
+            <Route path="/" element={<LandingScreen />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

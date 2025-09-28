@@ -17,7 +17,6 @@ const data = {
   ],
   products: [
     {
-      _id: "1",
       name: "UNBOXXXED: Alpha EP",
       slug: "unboxxxed-alpha-ep",
       category: "Music",
@@ -43,7 +42,6 @@ const data = {
       tags: ["hip-hop", "cosmic", "nerd-culture", "space"],
     },
     {
-      _id: "2",
       name: "Earl's Extragalactic Analysis Collection",
       slug: "earl-analysis-collection",
       category: "Exclusive Content",

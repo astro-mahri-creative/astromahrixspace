@@ -7,6 +7,15 @@ import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 const productRouter = express.Router();
 
+// tiny util to create URL-safe slugs from names
+const toSlug = (str = "") =>
+  String(str)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
@@ -38,7 +47,7 @@ productRouter.get(
         : order === "toprated"
         ? { rating: -1 }
         : { _id: -1 };
-    const count = await Product.count({
+    const count = await Product.countDocuments({
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
@@ -115,8 +124,12 @@ productRouter.post(
   isAuth,
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
+    const name = "sample name " + Date.now();
+    const baseSlug = toSlug(name) || "sample";
+    const slug = `${baseSlug}-${Date.now().toString(36)}`;
     const product = new Product({
-      name: "sample name " + Date.now(),
+      name,
+      slug,
       seller: req.user._id,
       image: "/images/p1.jpg",
       price: 0,
@@ -140,6 +153,10 @@ productRouter.put(
     const product = await Product.findById(productId);
     if (product) {
       product.name = req.body.name;
+      // Accept explicit slug if provided, otherwise keep existing to avoid breaking links
+      if (req.body.slug && req.body.slug !== product.slug) {
+        product.slug = toSlug(req.body.slug);
+      }
       product.price = req.body.price;
       product.image = req.body.image;
       product.category = req.body.category;
@@ -161,8 +178,9 @@ productRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
-      const deleteProduct = await product.remove();
-      res.send({ message: "Product Deleted", product: deleteProduct });
+      const deleted = product.toObject();
+      await product.deleteOne();
+      res.send({ message: "Product Deleted", product: deleted });
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }

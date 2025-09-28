@@ -18,7 +18,6 @@
     "db:logs": "docker compose logs -f mongo",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cosmic:setup": "npm run data:destroy && npm run data:import",
-    "cosmic:dev": "concurrently \"npm run dev\" \"npm start --prefix frontend\"",
     "deploy": "npm run build && echo 'Ready for deployment'"
   },
   "repository": {

@@ -4,6 +4,12 @@ import Product from "../models/productModel.js";
 
 const router = express.Router();
 
+// Helper to compare ObjectIds safely
+const isObjectIdEqual = (id1, id2) => {
+  if (!id1 || !id2) return false;
+  return id1.equals ? id1.equals(id2) : String(id1) === String(id2);
+};
+
 // @desc    Submit frequency match game score
 // @route   POST /api/game/frequency-match
 // @access  Public
@@ -24,6 +30,8 @@ router.post("/frequency-match", async (req, res) => {
         frequencyMatchScore: score,
         totalPlayTime: playTime,
         gamesPlayed: 1,
+        unlockedContent: [],
+        achievements: [],
       });
     } else {
       // Update with best score and total play time
@@ -45,7 +53,10 @@ router.post("/frequency-match", async (req, res) => {
       const earlProduct = await Product.findOne({
         slug: "earl-analysis-collection",
       });
-      if (earlProduct && !progress.unlockedContent.includes(earlProduct._id)) {
+      const alreadyUnlocked = progress.unlockedContent?.some((id) =>
+        isObjectIdEqual(id, earlProduct?._id)
+      );
+      if (earlProduct && !alreadyUnlocked) {
         progress.unlockedContent.push(earlProduct._id);
         newUnlocks.push(earlProduct);
 
@@ -66,7 +77,7 @@ router.post("/frequency-match", async (req, res) => {
     ) {
       newAchievements.push({
         name: "Cosmic Cadet",
-        description: "Scored 100+ in frequency match",
+        description: "Scored 100+ in Frequency Match",
         icon: "🚀",
         unlockedAt: new Date(),
       });
@@ -163,7 +174,10 @@ router.get("/unlock-status/:sessionId/:productId", async (req, res) => {
       isUnlocked = true;
       reason = "Always available";
     } else if (product.unlockRequirement === "game") {
-      if (progress && progress.unlockedContent.includes(productId)) {
+      const unlocked = progress?.unlockedContent?.some((id) =>
+        isObjectIdEqual(id, product._id)
+      );
+      if (unlocked) {
         isUnlocked = true;
         reason = "Unlocked through gaming";
       } else {
