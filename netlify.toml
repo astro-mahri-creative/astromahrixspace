@@ -9,8 +9,8 @@
 
 [dev]
   command = "npm start --prefix frontend"
-  port = 8889
-  targetPort = 3001
+  port = 8890
+  targetPort = 3002
   publish = "frontend/build"
   functions = "netlify/functions"
   autoLaunch = false
@@ -27,6 +27,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  # Do not force so existing static assets are served correctly
 
 # Headers for security and caching
 [[headers]]
