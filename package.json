@@ -50,6 +50,7 @@
     "mailgun-js": "^0.22.0",
     "mongoose": "^6.0.13",
     "multer": "^1.4.3",
+    "prop-types": "^15.8.1",
     "socket.io": "^4.4.0"
   }
 }

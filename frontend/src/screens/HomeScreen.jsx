@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listFeaturedProducts } from "../actions/productActions";
+import { listProducts, listFeaturedProducts } from "../actions/productActions";
 import { listTopSellers } from "../actions/userActions";
 import ModernButton from "../components/ModernButton";
 import ModernCard from "../components/ModernCard";
@@ -14,8 +14,16 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   const [currentFeature, setCurrentFeature] = useState(0);
 
+  // Try featured products first, fallback to regular products
   const productFeaturedList = useSelector((state) => state.productFeaturedList);
-  const { loading, error, products } = productFeaturedList;
+  const productList = useSelector((state) => state.productList);
+  
+  // Use featured products if available, otherwise use regular products
+  const featuredProducts = productFeaturedList?.products || [];
+  const regularProducts = productList?.products || [];
+  const products = featuredProducts.length > 0 ? featuredProducts : regularProducts;
+  const loading = productFeaturedList?.loading || productList?.loading;
+  const error = productFeaturedList?.error || productList?.error;
 
   const userTopSellersList = useSelector((state) => state.userTopSellersList);
   const {
@@ -56,7 +64,10 @@ export default function HomeScreen() {
   ];
 
   useEffect(() => {
-    dispatch(listFeaturedProducts(8)); // Get up to 8 featured products
+    // First try to get featured products
+    dispatch(listFeaturedProducts(8));
+    // Also get regular products as fallback
+    dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
 
@@ -238,7 +249,7 @@ export default function HomeScreen() {
                         description: product.description,
                         rating: product.rating,
                         reviewCount: product.numReviews,
-                        badge: product.featured ? "Featured" : 
+                        badge: (featuredProducts.length > 0 && product.featured) ? "Featured" : 
                                product.countInStock === 0 ? "Out of Stock" : null,
                         _id: product._id,
                       }}

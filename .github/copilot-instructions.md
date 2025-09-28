@@ -1,16 +1,27 @@
 # Copilot instructions for this repo
 
-Purpose: Help AI agents quickly understand how to## Gotchas
+## ⚠️ Critical Development Guidelines
 
-- Product unlock logic relies on a product with slug `earl-analysis-collection`; ensure it exists in seed data.
-- `MAILGUN_DOMIAN` env var name contains a typo in code; set it as-is.
-- The backend serves `frontend/build` and `/uploads` statically; keep paths intact when refactoring.
-- Use VS Code tasks for development; `npm run cosmic:dev` script removed (required missing `concurrently` dependency).
-- **Design system**: Always import modern components at file top; prefer modern components over legacy styling
-- **CSS precedence**: Modern design system CSS loads after legacy styles; use specific modern classes to override
-- **Responsive design**: Test all screen sizes; mobile-first approach means base styles apply to mobile (0px+)
+**ALWAYS ASK BEFORE COMMITTING BREAKING CHANGES:**
+- Never commit changes that modify core functionality without explicit user approval
+- Always test changes locally before committing, especially changes to:
+  - API endpoints and routing
+  - Redux actions/reducers and state management
+  - Component imports and dependencies
+  - Database schema modifications
+- If a change might break existing functionality, describe the impact and ask for permission
+- When making large feature additions, implement them as optional/fallback-compatible first
+- Test the full user flow (frontend + backend) before committing
 
-If anything above is unclear or you need additional conventions documented (e.g., component structure, design system usage, or CI specifics), ask and we'll refine this file.run, and extend this app without guesswork. Keep edits aligned with these patterns and file locations.
+**Breaking Change Examples to Always Ask About:**
+- Changing product listing logic (featured vs regular products)
+- Modifying API response structures
+- Adding new required dependencies
+- Changing component prop structures
+- Database model field changes
+- Authentication/routing modifications
+
+Purpose: Help AI agents quickly understand how to run, and extend this app without guesswork. Keep edits aligned with these patterns and file locations.
 
 ## Architecture (big picture)
 
