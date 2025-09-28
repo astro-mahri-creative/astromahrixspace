@@ -40,6 +40,7 @@
     "astromahrixspace": "file:",
     "axios": "^1.12.2",
     "bcryptjs": "^2.4.3",
+    "dig": "^0.0.6",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
