@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "set PORT=3001 && set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "set PORT=3002 && vite",
+    "prebuild": "npx babel src/App.jsx --out-file src/App.compiled.js --presets @babel/preset-react",
+    "build": "vite build",
+    "preview": "vite preview --port 3002",
+    "typecheck": "npx -y -p typescript@5.5.4 tsc -p tsconfig.json --noEmit",
+    "test": "echo \"No test runner configured with Vite yet\" && exit 0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,6 +30,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "astromahrixspace": "file:..",
     "axios": "^1.12.2",
     "immer": "^10.1.3",
     "react": "^17.0.2",
@@ -37,12 +40,18 @@
     "react-redux": "^7.2.6",
     "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^6.0.2",
-    "react-scripts": "^4.0.3",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.4.0"
   },
   "devDependencies": {
-    "postcss": "^8.5.6"
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "acorn-jsx": "^5.3.2",
+    "postcss": "^8.5.6",
+    "vite": "^4.5.3"
   }
 }

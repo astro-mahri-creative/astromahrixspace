@@ -8,7 +8,7 @@ import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
-import gameRouter from "./routes/gameRouter.js";
+import gameRouter from "./routers/gameRouter.js";
 
 dotenv.config();
 

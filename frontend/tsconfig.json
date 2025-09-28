@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    // Direct any hypothetical emit away from source to avoid overwrite diagnostics
+    "outDir": ".tsbuild",
+    "skipLibCheck": true,
+    "strict": false,
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {}
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".tsbuild",
+    "src/compiled",
+    "**/*.compiled.*",
+    // Exclude stub .js files that re-export .jsx counterparts to prevent duplicate output conflicts
+    "src/components/**/*.js",
+    "src/screens/**/*.js"
+  ]
+}

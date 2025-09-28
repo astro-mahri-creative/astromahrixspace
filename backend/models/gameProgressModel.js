@@ -1,99 +1,31 @@
 import mongoose from "mongoose";
 
-const reviewSchema = mongoose.Schema(
+// Track achievements unlocked via games
+const achievementSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true },
-    rating: { type: Number, required: true },
-    comment: { type: String, required: true },
+    description: { type: String },
+    icon: { type: String },
+    unlockedAt: { type: Date, default: Date.now },
   },
-  {
-    timestamps: true,
-  }
+  { _id: false }
 );
 
-const productSchema = mongoose.Schema(
+// Track per-session game progress and unlocked content
+const gameProgressSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    brand: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    // New gaming-related fields
-    longDescription: {
-      type: String,
-    },
-    features: [String],
-    unlockRequirement: {
-      type: String,
-      enum: ["free", "purchase", "game"],
-      default: "free",
-    },
-    gameScoreRequired: {
-      type: Number,
-      default: 0,
-    },
-    streamUrl: String,
-    downloadUrl: String,
-    contentType: {
-      type: String,
-      enum: ["music", "content", "merch"],
-      default: "music",
-    },
-    tags: [String],
-    // End new fields
-    reviews: [reviewSchema],
-    rating: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    numReviews: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    price: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    countInStock: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
+    sessionId: { type: String, required: true, index: true, unique: true },
+    frequencyMatchScore: { type: Number, default: 0 },
+    totalPlayTime: { type: Number, default: 0 }, // seconds
+    gamesPlayed: { type: Number, default: 0 },
+    lastActive: { type: Date, default: Date.now },
+    // Products unlocked by gameplay
+    unlockedContent: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    achievements: [achievementSchema],
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Product = mongoose.model("Product", productSchema);
+const GameProgress = mongoose.model("GameProgress", gameProgressSchema);
 
-export default Product;
+export default GameProgress;

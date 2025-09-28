@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { signout } from "./actions/userActions";
-import AdminRoute from "./components/AdminRoute";
-import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LandingScreen from "./screens/LandingScreen";
@@ -25,17 +25,17 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
-import SellerRoute from "./components/SellerRoute";
+import SellerRoute from "./components/SellerRoute.jsx";
 import SellerScreen from "./screens/SellerScreen";
-import SearchBox from "./components/SearchBox";
+import SearchBox from "./components/SearchBox.jsx";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
-import LoadingBox from "./components/LoadingBox";
-import MessageBox from "./components/MessageBox";
+import LoadingBox from "./components/LoadingBox.jsx";
+import MessageBox from "./components/MessageBox.jsx";
 import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
-import ChatBox from "./components/ChatBox";
+import ChatBox from "./components/ChatBox.jsx";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -163,7 +163,7 @@ function App() {
                 className="close-sidebar"
                 type="button"
               >
-                <i className="fa fa-close"></i>
+                {React.createElement("i", { className: "fa fa-close" })}
               </button>
             </li>
             {loadingCategories ? (
@@ -200,7 +200,7 @@ function App() {
             ></Route>
             <Route
               path="/product/:id/edit"
-              element={ProductEditScreen}
+              element={<ProductEditScreen />}
               exact
             ></Route>
             <Route path="/signin" element={<SigninScreen />}></Route>
@@ -327,6 +327,7 @@ function App() {
             />
 
             <Route path="/" element={<LandingScreen />} exact></Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
         <footer className="row center">
