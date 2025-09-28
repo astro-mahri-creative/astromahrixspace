@@ -14,6 +14,7 @@ import SearchBox from "./components/SearchBox.jsx";
 import LoadingBox from "./components/LoadingBox.jsx";
 import MessageBox from "./components/MessageBox.jsx";
 import ChatBox from "./components/ChatBox.jsx";
+import ModernNavigation from "./components/ModernNavigation.jsx";
 
 // Screen Components
 import CartScreen from "./screens/CartScreen.jsx";
@@ -44,6 +45,7 @@ import SupportScreen from "./screens/SupportScreen.jsx";
 import CMSDashboardScreen from "./screens/CMSDashboardScreen.jsx";
 import CMSArtistsScreen from "./screens/CMSArtistsScreen.jsx";
 import CMSProductsScreen from "./screens/CMSProductsScreen.jsx";
+import CMSNavigationScreen from "./screens/CMSNavigationScreen.jsx";
 
 function App() {
   console.log("[App] mounted");
@@ -70,133 +72,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="row">
-          <div>
-            <button
-              type="button"
-              className="open-sidebar"
-              onClick={() => setSidebarIsOpen(true)}
-            >
-              <i className="fa fa-bars"></i>
-            </button>
-            <Link className="brand" to="/">
-              astromahrixspace
-            </Link>
-          </div>
-          <div>
-            <SearchBox />
-          </div>
-          <div
-            className="top-links"
-            style={{ display: "flex", gap: ".75rem", alignItems: "center" }}
-          >
-            <Link to="/">Home</Link>
-            <Link to="/#media">Media</Link>
-            <Link to="/#games">Games</Link>
-            <Link to="/#merch">Merch</Link>
-            <Link to="/#contact">Contact</Link>
-            <Link to="/cart">
-              Cart
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
-              )}
-            </Link>
-            {userInfo ? (
-              <div className="dropdown">
-                <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{" "}
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/profile">User Profile</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderhistory">Order History</Link>
-                  </li>
-                  <li>
-                    <Link to="#signout" onClick={signoutHandler}>
-                      Sign Out
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link to="/signin">Sign In</Link>
-            )}
-            {userInfo && userInfo.isSeller && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/productlist/seller">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist/seller">Orders</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Admin <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                  <li>
-                    <Link to="/cms">CMS Control</Link>
-                  </li>
-                  <li>
-                    <Link to="/productlist">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist">Orders</Link>
-                  </li>
-                  <li>
-                    <Link to="/userlist">Users</Link>
-                  </li>
-                  <li>
-                    <Link to="/support">Support</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-        </header>
-        <aside className={sidebarIsOpen ? "open" : ""}>
-          <ul className="categories">
-            <li>
-              <strong>Categories</strong>
-              <button
-                onClick={() => setSidebarIsOpen(false)}
-                className="close-sidebar"
-                type="button"
-              >
-                <i className="fa fa-close"></i>
-              </button>
-            </li>
-            {loadingCategories ? (
-              <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
-            ) : (
-              categories.map((c) => (
-                <li key={c}>
-                  <Link
-                    to={`/search/category/${c}`}
-                    onClick={() => setSidebarIsOpen(false)}
-                  >
-                    {c}
-                  </Link>
-                </li>
-              ))
-            )}
-          </ul>
-        </aside>
+        <ModernNavigation
+          user={userInfo}
+          cartItems={cartItems}
+          onSignOut={signoutHandler}
+        />
         <main>
           <Routes>
             <Route path="/seller/:id" element={<SellerScreen />}></Route>
@@ -320,6 +200,14 @@ function App() {
               element={
                 <AdminRoute>
                   <CMSProductsScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/navigation"
+              element={
+                <AdminRoute>
+                  <CMSNavigationScreen />
                 </AdminRoute>
               }
             />

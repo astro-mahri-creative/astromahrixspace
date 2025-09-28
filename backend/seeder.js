@@ -4,6 +4,7 @@ import data from "./data.js";
 import User from "./models/userModel.js";
 import Product from "./models/productModel.js";
 import Order from "./models/orderModel.js";
+import seedNavigationData from "./seeders/navigationSeeder.js";
 
 dotenv.config();
 
@@ -50,6 +51,9 @@ async function importData() {
       return { ...rest, seller: seller._id };
     });
     const createdProducts = await Product.insertMany(products);
+
+    // Seed navigation data
+    await seedNavigationData();
 
     console.log(
       `Imported: users=${createdUsers.length}, products=${createdProducts.length}`

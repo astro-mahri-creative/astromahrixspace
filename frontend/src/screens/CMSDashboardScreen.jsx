@@ -80,6 +80,19 @@ export default function CMSDashboardScreen() {
         </div>
 
         <div className="col-3">
+          <div className="stat-card navigation">
+            <div className="stat-icon">🧭</div>
+            <div className="stat-content">
+              <h3>{stats?.navigation || 0}</h3>
+              <p>Navigation</p>
+              <Link to="/cms/navigation" className="stat-link">
+                Manage →
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-3">
           <div className="stat-card media">
             <div className="stat-icon">📱</div>
             <div className="stat-content">

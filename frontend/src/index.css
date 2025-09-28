@@ -1,43 +1,11 @@
-/* Cosmic Command Center Styling */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");
+/* Modern Astro Mahri Application Styles */
+/* Import modern design system first */
+@import "./styles/modern-design-system.css";
+@import "./styles/components.css";
 @import "./styles/cms.css";
 
-:root {
-  /* Astro Mahri Color Palette */
-  --razzmatazz: #c5077f;
-  --byzantium: #7c3c68;
-  --hunyadi-yellow: #f0b856;
-  --dark-grape: #51294b;
-  --sky-magenta: #cb67a1;
-  --raisin-black: #312e37;
-  --timberwolf: #d7d7d7;
-
-  /* Semantic Colors */
-  --primary: var(--razzmatazz);
-  --secondary: var(--byzantium);
-  --accent: var(--hunyadi-yellow);
-  --background: var(--raisin-black);
-  --surface: var(--dark-grape);
-  --text: var(--timberwolf);
-  --text-muted: var(--sky-magenta);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(
-    135deg,
-    var(--background) 0%,
-    var(--surface) 100%
-  );
-  color: var(--text);
-  min-height: 100vh;
-}
+/* Legacy compatibility layer - will be gradually phased out */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");
 
 /* App layout safety to ensure content is visible */
 .grid-container {
@@ -45,30 +13,23 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
 header.row {
   position: relative;
   z-index: 5;
 }
+
 main {
   position: relative;
   z-index: 3;
 }
+
 footer.row.center {
   position: relative;
   z-index: 3;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Orbitron", sans-serif;
-  font-weight: 700;
-}
-
-/* Cosmic UI Components */
+/* Legacy cosmic components - gradually being replaced by modern design system */
 .cosmic-card {
   background: linear-gradient(
     145deg,
@@ -91,8 +52,8 @@ h6 {
 }
 
 .spaceship-button {
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  color: var(--background);
+  background: linear-gradient(45deg, var(--primary-500), var(--accent-500));
+  color: var(--dark-800);
   border: none;
   padding: 12px 24px;
   border-radius: 25px;
@@ -114,81 +75,33 @@ h6 {
 .cosmic-nav {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary-500);
   padding: 1rem 0;
 }
 
 .cosmic-input {
   background: rgba(124, 60, 104, 0.2);
-  border: 1px solid var(--primary);
+  border: 1px solid var(--primary-500);
   border-radius: 8px;
   padding: 12px 16px;
-  color: var(--text);
+  color: var(--text-primary);
   font-family: "Inter", sans-serif;
 }
 
 .cosmic-input:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--accent-500);
   box-shadow: 0 0 10px rgba(240, 184, 86, 0.3);
 }
 
-/* Game UI Elements */
-/* consolidated below */
-
-/* Unlock States */
-.locked-content {
-  filter: grayscale(1) opacity(0.5);
-  position: relative;
-}
-
-.unlock-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(49, 46, 55, 0.8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-}
-
-.sparkle-animation {
-  animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .cosmic-card {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  .spaceship-button {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-/* Gaming Components */
-.game-container {
-  background: linear-gradient(135deg, var(--surface), var(--background));
-  border: 2px solid var(--primary);
+/* Game Components - Updated to use design system variables */
+.game-container-legacy {
+  background: linear-gradient(
+    135deg,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  border: 2px solid var(--primary-500);
   border-radius: 20px;
   padding: 30px;
   margin: 20px 0;
@@ -198,22 +111,22 @@ h6 {
 
 .cosmic-title {
   font-family: "Orbitron", sans-serif;
-  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background: linear-gradient(45deg, var(--primary-500), var(--accent-500));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 10px;
 }
 
-.frequency-slider {
+.frequency-slider-legacy {
   width: 100%;
   height: 12px;
   border-radius: 6px;
   background: linear-gradient(
     90deg,
-    var(--primary) 0%,
-    var(--accent) 50%,
-    var(--primary) 100%
+    var(--primary-500) 0%,
+    var(--accent-500) 50%,
+    var(--primary-500) 100%
   );
   outline: none;
   margin: 20px 0;
@@ -221,49 +134,36 @@ h6 {
   appearance: none;
 }
 
-.frequency-slider::-webkit-slider-thumb {
+.frequency-slider-legacy::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--primary);
+  background: var(--accent-500);
+  border: 2px solid var(--primary-500);
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.frequency-slider::-moz-range-thumb {
+.frequency-slider-legacy::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--primary);
+  background: var(--accent-500);
+  border: 2px solid var(--primary-500);
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Achievement Notifications */
+/* Achievement Notifications - Updated with design system */
 .cosmic-achievement {
   background: linear-gradient(
     145deg,
     rgba(124, 60, 104, 0.95),
     rgba(197, 7, 127, 0.95)
   );
-  border: 1px solid var(--accent);
-  box-shadow: 0 8px 25px rgba(197, 7, 127, 0.4);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-/* Achievement Notifications */
-.cosmic-achievement {
-  background: linear-gradient(
-    145deg,
-    rgba(124, 60, 104, 0.95),
-    rgba(197, 7, 127, 0.95)
-  );
-  border: 1px solid var(--accent);
+  border: 1px solid var(--accent-500);
   box-shadow: 0 8px 25px rgba(197, 7, 127, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -271,12 +171,12 @@ h6 {
 
 .cosmic-toast-header {
   background: rgba(240, 184, 86, 0.2);
-  border-bottom: 1px solid var(--accent);
-  color: var(--text);
+  border-bottom: 1px solid var(--accent-500);
+  color: var(--text-primary);
 }
 
 .cosmic-toast-body {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .achievement-icon {
@@ -285,7 +185,7 @@ h6 {
 }
 
 .achievement-name {
-  color: var(--accent);
+  color: var(--accent-500);
   font-family: "Orbitron", sans-serif;
   font-weight: 600;
   margin-bottom: 5px;
@@ -306,9 +206,9 @@ h6 {
   }
 }
 
-/* Consolidated Unlock States */
+/* Unlock States */
 .locked-content {
-  filter: grayscale(1) opacity(0.6);
+  filter: grayscale(1) opacity(0.5);
   position: relative;
 }
 
@@ -323,6 +223,22 @@ h6 {
   border-radius: 15px;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+}
+
+.sparkle-animation {
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }
 
 /* Game Stats */
@@ -342,23 +258,33 @@ h6 {
 
 .stat-label {
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .stat-value {
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-500);
   font-family: "Orbitron", sans-serif;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .game-container {
+  .game-container-legacy {
     margin: 10px;
     padding: 20px;
   }
 
-  .frequency-slider {
+  .frequency-slider-legacy {
     margin: 15px 0;
+  }
+
+  .cosmic-card {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .spaceship-button {
+    width: 100%;
+    margin: 10px 0;
   }
 }

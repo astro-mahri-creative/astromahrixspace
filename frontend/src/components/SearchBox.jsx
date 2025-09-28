@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBox() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    navigate(`/search/name/${name}`);
+    if (name.trim()) {
+      navigate(`/search/name/${name}`);
+    }
   };
   return (
-    <form className="search" onSubmit={submitHandler}>
-      <div className="row">
+    <form className="search-form" onSubmit={submitHandler}>
+      <div className="search-input-group">
         <input
           type="text"
           name="q"
           id="q"
+          placeholder="Search products..."
+          className="search-input"
+          value={name}
           onChange={(e) => setName(e.target.value)}
-        ></input>
-        <button className="primary" type="submit">
+        />
+        <button className="search-button" type="submit">
           <i className="fa fa-search"></i>
         </button>
       </div>
