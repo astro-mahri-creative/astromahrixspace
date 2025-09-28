@@ -85,8 +85,9 @@
   text-shadow: 0 0 20px #16e0bd33, 0 0 40px #ff2aad22;
   font-size: clamp(2.25rem, 4.5vw, 5rem);
 }
-.retro-title .glow {
-  filter: drop-shadow(0 0 16px #16e0bd88);
+.retro-title .italic {
+  font-style: italic;
+  font-weight: 800;
 }
 .retro-title .accent {
   color: var(--magenta);

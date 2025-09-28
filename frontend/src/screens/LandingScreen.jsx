@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
-import Product from "../components/Product";
+import LandingProduct from "../components/LandingProduct";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import "../styles/retro.css";
@@ -28,30 +28,13 @@ export default function LandingScreen() {
       {/* Hero */}
       <section className="retro-hero section" aria-labelledby="hero-title">
         <h1 id="hero-title" className="retro-title">
-          <span className="glow">ASTRO</span>
+          <span className="italic">ASTRO</span>
           <span className="accent">MAHRI</span>
           <span className="thin">.SPACE</span>
         </h1>
         <p className="retro-subtitle">
           Retro-futuristic media, games, and gear from a neon-lit future.
         </p>
-        <nav className="retro-menu">
-          <Link className="retro-tile" to="/#about">
-            <span>About</span>
-          </Link>
-          <Link className="retro-tile" to="/#media">
-            <span>Media + Content</span>
-          </Link>
-          <Link className="retro-tile" to="/#games">
-            <span>Game Library</span>
-          </Link>
-          <Link className="retro-tile" to="/#merch">
-            <span>Merch</span>
-          </Link>
-          <Link className="retro-tile" to="/#contact">
-            <span>Contact</span>
-          </Link>
-        </nav>
       </section>
 
       {/* About */}
@@ -165,7 +148,7 @@ export default function LandingScreen() {
           ) : (
             <div className="product-row">
               {featured.map((p) => (
-                <Product key={p._id} product={p} />
+                <LandingProduct key={p._id} product={p} />
               ))}
             </div>
           )}
@@ -178,49 +161,66 @@ export default function LandingScreen() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="section section-contact">
+      <section id="contact" className="section section-contact section-compact">
         <div className="container">
-          <h2 className="section-title">Contact</h2>
+          <h2 className="section-title">HMU</h2>
           <p className="section-lead">
-            Booking, collabs, licensing — say hello.
+            Connect with us across the digital cosmos.
           </p>
-          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid two">
-              <input
-                className="input"
-                name="name"
-                placeholder="Your name"
-                required
-              />
-              <input
-                className="input"
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-              />
-            </div>
-            <textarea
-              className="input"
-              name="message"
-              rows="5"
-              placeholder="Message"
-              required
-            />
-            <div className="cta-row">
-              <button className="btn-primary" type="submit">
-                Send
-              </button>
-              <Link
-                className="btn-secondary"
-                to="mailto:hello@astromahri.space"
-              >
-                Email Instead
-              </Link>
-            </div>
-          </form>
+          <div className="social-links">
+            <a
+              href="mailto:hello@astromahri.space"
+              className="social-link email-link"
+              title="Email"
+            >
+              <i className="fas fa-envelope" aria-label="Email"></i>
+              <span className="sr-only">Email</span>
+            </a>
+            <a
+              href="https://bsky.app/profile/astromahri.bsky.social"
+              className="social-link bluesky-link"
+              title="Bluesky"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fas fa-cloud" aria-label="Bluesky"></i>
+              <span className="sr-only">Bluesky</span>
+            </a>
+            <a
+              href="https://instagram.com/astromahri"
+              className="social-link instagram-link"
+              title="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-instagram" aria-label="Instagram"></i>
+              <span className="sr-only">Instagram</span>
+            </a>
+          </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="footer-section">
+        <div className="container">
+          <div className="footer-content">
+            <p className="footer-text">
+              © 2025 Astro Mahri Space. Built for the cosmic future.
+            </p>
+            <div className="footer-links">
+              <Link to="/privacy" className="footer-link">
+                Privacy
+              </Link>
+              <Link to="/terms" className="footer-link">
+                Terms
+              </Link>
+              <a href="mailto:hello@astromahri.space" className="footer-link">
+                Support
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

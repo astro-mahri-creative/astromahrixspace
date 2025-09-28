@@ -583,6 +583,27 @@ Reusable UI components with consistent styling
 
 .card-body {
   margin-bottom: var(--space-4);
+  font-size: var(--text-sm); /* Reduced from base size */
+}
+
+.card-body h1,
+.card-body h2,
+.card-body h3 {
+  font-size: var(--text-lg); /* Reduced by one level */
+}
+
+.card-body h4 {
+  font-size: var(--text-base); /* Reduced by one level */
+}
+
+.card-body h5,
+.card-body h6 {
+  font-size: var(--text-sm); /* Reduced by one level */
+}
+
+.card-body p {
+  font-size: var(--text-sm); /* Reduced from base size */
+  line-height: var(--leading-relaxed);
 }
 
 .card-footer {
