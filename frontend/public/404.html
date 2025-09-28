@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found | astromahri.space</title>
+    <style>
+      :root { color-scheme: dark light; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        color: #e6e6e6; background: #0d0f14;
+        display: grid; min-height: 100dvh; place-items: center;
+      }
+      .wrap { padding: 2rem; text-align: center; max-width: 62rem; }
+      h1 { font-size: clamp(2rem, 6vw, 4rem); margin: 0 0 .5rem; letter-spacing: .02em; }
+      p { opacity: .85; margin: .25rem 0 1rem; }
+      .grid { position: fixed; inset: 0; pointer-events: none; background:
+        radial-gradient(1000px 500px at 50% 100%, rgba(0, 255, 255, .05), transparent 70%),
+        linear-gradient(transparent 0 95%, rgba(0, 255, 255, .08) 95%),
+        linear-gradient(90deg, transparent 0 95%, rgba(0, 255, 255, .06) 95%);
+        background-size: 100% 100%, 100% 32px, 32px 100%;
+        mask: linear-gradient(#000, transparent);
+      }
+      a { color: #55e3ff; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+      .btn { background: #151a22; color: #e6e6e6; border: 1px solid #2a3240; padding: .6rem 1rem; border-radius: .5rem; }
+      .btn:hover { border-color: #55e3ff; }
+      code { background: #11161c; padding: .1rem .35rem; border-radius: .25rem; border: 1px solid #273043; }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <div class="wrap">
+      <h1>404 – Page Not Found</h1>
+      <p>
+        We couldn't find that page. If you typed the address, check the spelling.
+        For single-page app routes, go back home and navigate from there.
+      </p>
+      <div class="actions">
+        <a class="btn" href="/">Go Home</a>
+        <a class="btn" href="/media">Media</a>
+        <a class="btn" href="/games">Games</a>
+        <a class="btn" href="/merch">Merch</a>
+        <a class="btn" href="/contact">Contact</a>
+      </div>
+      <p style="margin-top:1rem">
+        Health: <a href="/health.json"><code>/health.json</code></a> · API: <a href="/api/health"><code>/api/health</code></a>
+      </p>
+    </div>
+  </body>
+</html>
