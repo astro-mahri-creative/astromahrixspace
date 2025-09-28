@@ -181,3 +181,195 @@ h6 {
     margin: 10px 0;
   }
 }
+
+/* Gaming Components */
+.game-container {
+  background: linear-gradient(135deg, var(--surface), var(--background));
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(197, 7, 127, 0.2);
+}
+
+.cosmic-title {
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.frequency-slider {
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--primary) 100%
+  );
+  outline: none;
+  margin: 20px 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.frequency-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.frequency-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Achievement Notifications */
+.cosmic-achievement {
+  background: linear-gradient(
+    145deg,
+    rgba(124, 60, 104, 0.95),
+    rgba(197, 7, 127, 0.95)
+  );
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 25px rgba(197, 7, 127, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.cosmic-toast-header {
+  background: rgba(240, 184, 86, 0.2);
+  border-bottom: 1px solid var(--accent);
+  color: var(--text);
+}
+
+.cosmic-toast-body {
+  color: var(--text);
+}
+
+.achievement-icon {
+  font-size: 1.5em;
+  animation: pulse 2s infinite;
+}
+
+.achievement-name {
+  color: var(--accent);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.achievement-description {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Unlock States */
+.locked-content {
+  filter: grayscale(1) opacity(0.6);
+  position: relative;
+}
+
+.unlock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(49, 46, 55, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.unlock-challenge {
+  background: linear-gradient(145deg, var(--surface), var(--background));
+  border: 1px solid var(--primary);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.unlock-button {
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  border: none;
+  color: var(--background);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.unlock-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 7, 127, 0.4);
+}
+
+/* Game Stats */
+.game-stats {
+  background: rgba(124, 60, 104, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.stat-label {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-weight: 600;
+  color: var(--accent);
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-container {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .frequency-slider {
+    margin: 15px 0;
+  }
+}

@@ -2,12 +2,12 @@ version: "3.8"
 services:
   mongo:
     image: mongo:6
-    container_name: amazona-mongo
+    container_name: astromahrixspace-mongo
     restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_DATABASE: amazona
+      MONGO_INITDB_DATABASE: astromahrixspace
     volumes:
       - mongo_data:/data/db
 volumes:

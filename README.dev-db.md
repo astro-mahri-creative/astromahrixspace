@@ -12,7 +12,7 @@ This project includes a Docker Compose setup to run MongoDB locally for developm
 npm run db:up
 ```
 
-This starts a container named `amazona-mongo` and exposes port 27017.
+This starts a container named `astromahrixspace-mongo` and exposes port 27017.
 
 ## View logs
 
@@ -31,12 +31,12 @@ npm run db:down
 Copy `.env.example` to `.env` at the repo root to set optional variables for the backend:
 
 ```
-MONGODB_URL= # leave empty for local mongodb://localhost/amazona, or set your Atlas URI
+MONGODB_URL= # leave empty for local mongodb://localhost/astromahrixspace, or set your Atlas URI
 PAYPAL_CLIENT_ID=sb
 GOOGLE_API_KEY=
 ```
 
-The backend reads `MONGODB_URL` in `backend/server.js`. If not set, it defaults to `mongodb://localhost/amazona`.
+The backend reads `MONGODB_URL` in `backend/server.js`. If not set, it defaults to `mongodb://localhost/astromahrixspace`.
 
 ## Running the app
 

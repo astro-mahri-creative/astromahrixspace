@@ -10,7 +10,7 @@ dotenv.config();
 const mongoUri =
   process.env.MONGODB_URL ||
   process.env.MONGODB_URI ||
-  "mongodb://localhost/amazona";
+  "mongodb://localhost/astromahrixspace";
 
 async function connect() {
   await mongoose.connect(mongoUri);

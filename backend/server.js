@@ -8,6 +8,7 @@ import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
+import gameRouter from "./routes/gameRouter.js";
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ process.on("uncaughtException", (err) => {
 const mongoUri =
   process.env.MONGODB_URL ||
   process.env.MONGODB_URI ||
-  "mongodb://localhost/amazona";
+  "mongodb://localhost/astromahrixspace";
 mongoose
   .connect(mongoUri, { serverSelectionTimeoutMS: 5000 })
   .then(() => console.log("MongoDB connected"))
@@ -42,6 +43,7 @@ app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/game", gameRouter);
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
@@ -62,7 +64,7 @@ app.get("/health", async (req, res) => {
       uri: (
         process.env.MONGODB_URL ||
         process.env.MONGODB_URI ||
-        "mongodb://localhost/amazona"
+        "mongodb://localhost/astromahrixspace"
       ).replace(/:\/\/.+@/, "://***:***@"),
     },
     env: process.env.NODE_ENV || "development",

@@ -1,5 +1,5 @@
 {
-  "name": "amazona",
+  "name": "astromahrixspace",
   "type": "module",
   "version": "1.0.0",
   "description": "Ecommerce website like amazon",
@@ -7,10 +7,12 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
+    "dev:netlify": "netlify dev",
     "data:import": "node backend/seeder.js",
     "data:destroy": "node backend/seeder.js -d",
     "seed:reset": "npm run data:destroy && npm run data:import",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "build:netlify": "npm install --prefix frontend && npm run build --prefix frontend",
     "db:up": "docker compose up -d mongo",
     "db:down": "docker compose down",
     "db:logs": "docker compose logs -f mongo",
@@ -21,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/basir/amazona.git"
+    "url": "git+https://github.com/astro-mahri-creative/astromahri.space.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/basir/amazona/issues"
+    "url": "https://github.com/astro-mahri-creative/astromahri.space/issues"
   },
-  "homepage": "https://github.com/basir/amazona#readme",
+  "homepage": "https://github.com/astro-mahri-creative/astromahri.space#readme",
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.21.2",

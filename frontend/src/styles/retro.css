@@ -1,0 +1,148 @@
+/* Retro-futuristic landing styles */
+:root {
+  --bg: #070814;
+  --grid: #2a2a72;
+  --neon: #16e0bd;
+  --magenta: #ff2aad;
+  --white: #e6e6ff;
+}
+
+.retro-root {
+  position: relative;
+  min-height: calc(100vh - 8rem);
+  margin: -1rem; /* stretch to edges of main content */
+  background: radial-gradient(
+      1200px 600px at 50% 0%,
+      rgba(22, 224, 189, 0.06),
+      transparent 60%
+    ),
+    var(--bg);
+  overflow: hidden;
+}
+
+.retro-stars {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(2px 2px at 10% 20%, #fff8, transparent 40%),
+    radial-gradient(2px 2px at 80% 30%, #fff5, transparent 40%),
+    radial-gradient(1px 1px at 30% 70%, #fff5, transparent 40%),
+    radial-gradient(1px 1px at 60% 50%, #fff7, transparent 40%);
+  filter: drop-shadow(0 0 6px #fff4);
+  animation: twinkle 6s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.retro-grid {
+  position: absolute;
+  left: -10vw;
+  right: -10vw;
+  bottom: -2rem;
+  height: 50vh;
+  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.3)),
+    repeating-linear-gradient(#0000, #0000 22px, #0002 22px, #0002 24px),
+    linear-gradient(transparent 0 48%, var(--grid) 48% 52%, transparent 52%),
+    radial-gradient(
+      60% 100% at 50% 120%,
+      #0000 0 40%,
+      var(--grid) 40% 41%,
+      #0000 41%
+    );
+  transform: perspective(600px) rotateX(60deg);
+  border-top: 1px solid #2a2a7244;
+}
+
+.retro-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 8vh 1rem 16vh;
+  color: var(--white);
+}
+
+.retro-title {
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 900;
+  background: linear-gradient(90deg, #b2fff5, #fff, #ffd6f4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px #16e0bd33, 0 0 40px #ff2aad22;
+  font-size: clamp(2.25rem, 4.5vw, 5rem);
+}
+.retro-title .glow {
+  filter: drop-shadow(0 0 16px #16e0bd88);
+}
+.retro-title .accent {
+  color: var(--magenta);
+  -webkit-text-stroke: 0.5px #fff2;
+}
+.retro-title .thin {
+  font-weight: 300;
+  letter-spacing: 0.22em;
+}
+
+.retro-subtitle {
+  margin: 1rem auto 2rem;
+  max-width: 42rem;
+  opacity: 0.9;
+  font-size: clamp(0.95rem, 1.6vw, 1.125rem);
+}
+
+.retro-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.retro-tile {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25rem 1.25rem;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--white);
+  background: linear-gradient(180deg, #171933, #0b0d1f);
+  border: 1px solid #4e4ea544;
+  box-shadow: 0 10px 30px #0008 inset, 0 8px 30px #0006;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.retro-tile::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  z-index: -1;
+  background: linear-gradient(130deg, #00ffd5, #a200ff);
+  opacity: 0.08;
+  filter: blur(10px);
+}
+
+.retro-tile:hover {
+  transform: translateY(-4px);
+  border-color: #9a9af7aa;
+  box-shadow: 0 20px 40px #0009 inset, 0 10px 40px #1616ff22;
+}
+
+.retro-tile span {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}

@@ -1,46 +1,92 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const gameProgressSchema = mongoose.Schema(
+const reviewSchema = mongoose.Schema(
+  {
+    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const productSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false, // Allow anonymous gaming
+      required: true,
+      ref: "User",
     },
-    sessionId: {
+    name: {
+      type: String,
+      required: true,
+    },
+    slug: {
       type: String,
       required: true,
       unique: true,
     },
-    frequencyMatchScore: {
+    image: {
+      type: String,
+      required: true,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    // New gaming-related fields
+    longDescription: {
+      type: String,
+    },
+    features: [String],
+    unlockRequirement: {
+      type: String,
+      enum: ["free", "purchase", "game"],
+      default: "free",
+    },
+    gameScoreRequired: {
       type: Number,
       default: 0,
     },
-    totalPlayTime: {
-      type: Number,
-      default: 0, // in seconds
+    streamUrl: String,
+    downloadUrl: String,
+    contentType: {
+      type: String,
+      enum: ["music", "content", "merch"],
+      default: "music",
     },
-    gamesPlayed: {
+    tags: [String],
+    // End new fields
+    reviews: [reviewSchema],
+    rating: {
       type: Number,
+      required: true,
       default: 0,
     },
-    unlockedContent: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-    ],
-    achievements: [
-      {
-        name: String,
-        unlockedAt: Date,
-        description: String,
-        icon: String,
-      },
-    ],
-    lastActive: {
-      type: Date,
-      default: Date.now,
+    numReviews: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    countInStock: {
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   {
@@ -48,10 +94,6 @@ const gameProgressSchema = mongoose.Schema(
   }
 );
 
-// Index for faster queries
-gameProgressSchema.index({ sessionId: 1 });
-gameProgressSchema.index({ user: 1 });
+const Product = mongoose.model("Product", productSchema);
 
-const GameProgress = mongoose.model('GameProgress', gameProgressSchema);
-
-export default GameProgress;
+export default Product;
