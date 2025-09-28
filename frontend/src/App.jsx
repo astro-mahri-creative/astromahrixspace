@@ -41,6 +41,9 @@ import SearchScreen from "./screens/SearchScreen.jsx";
 import MapScreen from "./screens/MapScreen.jsx";
 import DashboardScreen from "./screens/DashboardScreen.jsx";
 import SupportScreen from "./screens/SupportScreen.jsx";
+import CMSDashboardScreen from "./screens/CMSDashboardScreen.jsx";
+import CMSArtistsScreen from "./screens/CMSArtistsScreen.jsx";
+import CMSProductsScreen from "./screens/CMSProductsScreen.jsx";
 
 function App() {
   console.log("[App] mounted");
@@ -143,6 +146,9 @@ function App() {
                 <ul className="dropdown-content">
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to="/cms">CMS Control</Link>
                   </li>
                   <li>
                     <Link to="/productlist">Products</Link>
@@ -290,6 +296,30 @@ function App() {
               element={
                 <AdminRoute>
                   <DashboardScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms"
+              element={
+                <AdminRoute>
+                  <CMSDashboardScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/artists"
+              element={
+                <AdminRoute>
+                  <CMSArtistsScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/products"
+              element={
+                <AdminRoute>
+                  <CMSProductsScreen />
                 </AdminRoute>
               }
             />

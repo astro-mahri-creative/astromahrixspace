@@ -9,6 +9,8 @@ import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 import gameRouter from "./routers/gameRouter.js";
+import cmsRouter from "./routers/cmsRouter.js";
+import contentApiRouter from "./routers/contentApiRouter.js";
 
 dotenv.config();
 
@@ -44,6 +46,8 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/game", gameRouter);
+app.use("/api/cms", cmsRouter);
+app.use("/api/content", contentApiRouter);
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });

@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import AdminCredentials from "../components/AdminCredentials.jsx";
 
 export default function SigninScreen(props) {
   const navigate = useNavigate();
@@ -71,6 +72,9 @@ export default function SigninScreen(props) {
           </div>
         </div>
       </form>
+
+      {/* Admin Credentials Helper */}
+      <AdminCredentials />
     </div>
   );
 }

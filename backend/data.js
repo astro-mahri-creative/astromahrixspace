@@ -9,6 +9,12 @@ const data = {
       isAdmin: true,
     },
     {
+      name: "astro_admin",
+      email: "astro_admin@astromahri.space",
+      password: bcrypt.hashSync("cosmic_cms_2025"),
+      isAdmin: true,
+    },
+    {
       name: "Earl Out Of This World",
       email: "earl@astromahri.space",
       password: bcrypt.hashSync("virdcast2121"),
