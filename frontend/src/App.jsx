@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { signout } from "./actions/userActions";
 import AdminRoute from "./components/AdminRoute.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
@@ -57,9 +57,26 @@ function App() {
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
+
+  // Smooth-scroll to hash anchors for one-page layout sections
+  const ScrollToHash = () => {
+    const { hash } = useLocation();
+    useEffect(() => {
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, [hash]);
+    return null;
+  };
   return (
     <BrowserRouter>
       <div className="grid-container">
+        <ScrollToHash />
         <header className="row">
           <div>
             <button
@@ -81,10 +98,10 @@ function App() {
             style={{ display: "flex", gap: ".75rem", alignItems: "center" }}
           >
             <Link to="/">Home</Link>
-            <Link to="/media">Media</Link>
-            <Link to="/games">Games</Link>
-            <Link to="/merch">Merch</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/#media">Media</Link>
+            <Link to="/#games">Games</Link>
+            <Link to="/#merch">Merch</Link>
+            <Link to="/#contact">Contact</Link>
             <Link to="/cart">
               Cart
               {cartItems.length > 0 && (
