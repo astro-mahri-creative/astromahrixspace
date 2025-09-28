@@ -201,14 +201,13 @@
 .footer-section {
   position: relative;
   z-index: 10;
-  padding: clamp(2rem, 4vw, 3rem) 1rem;
+  padding: 1.5rem 1rem 0 1rem;
+  max-height: 120px;
   background: linear-gradient(180deg, #0b0d1f, #070814);
   border-top: 1px solid #4e4ea544;
-  margin-top: clamp(
-    3rem,
-    8vw,
-    6rem
-  ); /* Space above footer to prevent retro-grid overlap */
+  margin-top: 0;
+  display: flex;
+  align-items: center;
 }
 
 .footer-content {
@@ -219,6 +218,7 @@
   gap: 1rem;
   max-width: 800px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .footer-text {
@@ -255,11 +255,6 @@
   .footer-links {
     justify-content: center;
   }
-}
-
-/* Ensure retro-grid doesn't interfere with footer */
-.retro-root {
-  padding-bottom: clamp(4rem, 10vw, 8rem);
 }
 
 /* Social Media Links */

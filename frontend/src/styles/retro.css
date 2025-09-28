@@ -44,23 +44,39 @@
 }
 
 .retro-grid {
-  position: absolute;
-  left: -10vw;
-  right: -10vw;
-  bottom: -2rem;
-  height: 50vh;
+  position: relative;
+  margin-top: 0;
+  height: 50px;
+  max-height: 50px;
   z-index: 1;
-  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.3)),
-    repeating-linear-gradient(#0000, #0000 22px, #0002 22px, #0002 24px),
-    linear-gradient(transparent 0 48%, var(--grid) 48% 52%, transparent 52%),
-    radial-gradient(
-      60% 100% at 50% 120%,
-      #0000 0 40%,
-      var(--grid) 40% 41%,
-      #0000 41%
-    );
-  transform: perspective(600px) rotateX(60deg);
-  border-top: 1px solid #2a2a7244;
+  background: 
+    /* Fade out gradient */ linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 60%,
+      transparent 100%
+    ),
+    /* Horizontal grid lines */
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 8px,
+        rgba(42, 42, 114, 0.3) 8px,
+        rgba(42, 42, 114, 0.3) 10px
+      ),
+    /* Vertical perspective lines */
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(42, 42, 114, 0.2) 2px,
+        rgba(42, 42, 114, 0.2) 3px
+      ),
+    /* Base gradient */
+      linear-gradient(180deg, rgba(7, 8, 20, 0.8) 0%, rgba(7, 8, 20, 0.4) 100%);
+  transform: perspective(400px) rotateX(75deg);
+  border-top: 1px solid rgba(42, 42, 114, 0.4);
+  opacity: 0.7;
 }
 
 .retro-hero {

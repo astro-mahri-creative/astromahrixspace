@@ -23,7 +23,6 @@ export default function LandingScreen() {
   return (
     <div className="retro-root" id="top">
       <div className="retro-stars" />
-      <div className="retro-grid" />
 
       {/* Hero */}
       <section className="retro-hero section" aria-labelledby="hero-title">
@@ -221,6 +220,9 @@ export default function LandingScreen() {
           </div>
         </div>
       </footer>
+
+      {/* Retro Grid */}
+      <div className="retro-grid" />
     </div>
   );
 }
