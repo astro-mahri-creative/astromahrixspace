@@ -3,3 +3,42 @@ node_modules
 
 # Local Netlify folder
 .netlify
+
+# Build outputs
+frontend/build/
+dist/
+.tsbuild/
+
+# Temporary compiled artifacts
+frontend/src/compiled/
+frontend/src/**/*.compiled.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Coverage / test artifacts
+coverage/
+
+# Env files (do not commit secrets)
+.env
+.env.*
+
+# Netlify build cache
+.netlify/state.json
+
+# Lock backup files
+package-lock.json.*
+yarn.lock.*
+pnpm-lock.yaml.*
