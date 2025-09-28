@@ -9,6 +9,8 @@
   NPM_FLAGS = "--legacy-peer-deps"
   # Install devDependencies during build so Vite is available
   NPM_CONFIG_PRODUCTION = "false"
+  # Secrets scanning: omit known keys from scanning (values are set in UI, not committed)
+  SECRETS_SCAN_OMIT_KEYS = "JWT_SECRET,MONGODB_URI,NODE_ENV,STRIPE_SECRET_KEY,PAYPAL_CLIENT_ID"
 
 [dev]
   command = "npm start --prefix frontend"

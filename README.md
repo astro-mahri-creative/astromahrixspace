@@ -86,20 +86,20 @@ npm install -g netlify-cli
 
 3. **Environment configuration**
 
-Create `.env` in project root:
+Create `.env` in project root (for local development only) and set values in your deployment provider (Netlify) for production. Do NOT commit real secrets.
 
 ```bash
 # Database
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/astrocommandcenter
+MONGODB_URI=<your-mongodb-uri>
 
 # Authentication
-JWT_SECRET=your-super-secret-jwt-key
+JWT_SECRET=<set-in-netlify-dashboard>
 
 # Payments
-STRIPE_SECRET_KEY=sk_test_your-stripe-secret-key
+STRIPE_SECRET_KEY=<set-in-netlify-dashboard>
 
 # PayPal (optional)
-PAYPAL_CLIENT_ID=your-paypal-client-id
+PAYPAL_CLIENT_ID=<optional-in-dashboard>
 
 # Environment
 NODE_ENV=development
@@ -199,12 +199,12 @@ The project uses Netlify for both frontend hosting and serverless functions. Dep
 
 ### Environment Variables (Production)
 
-Set these in your Netlify dashboard under Site Settings > Environment Variables:
+Set these in your Netlify dashboard under Site Settings > Environment Variables (do not commit secrets to the repo):
 
 - `MONGODB_URI` (production database)
 - `JWT_SECRET` (production secret)
 - `STRIPE_SECRET_KEY` (live Stripe key)
-- `NODE_ENV=production`
+- `NODE_ENV` with value `production`
 
 ### Domain Setup
 
