@@ -1,0 +1,13 @@
+{
+  "workbench.colorTheme": "Default Dark+",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "eslint.workingDirectories": ["frontend", "backend"]
+}
