@@ -660,6 +660,7 @@ aria-query@^5.0.0:
   version "1.0.0"
   resolved "file:.."
   dependencies:
+    astromahrixspace "file:"
     axios "^1.12.2"
     bcryptjs "^2.4.3"
     dotenv "^10.0.0"

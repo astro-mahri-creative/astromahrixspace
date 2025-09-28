@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "set PORT=3002 && vite",
-    "prebuild": "npx babel src/App.jsx --out-file src/App.compiled.js --presets @babel/preset-react",
     "build": "vite build",
     "preview": "vite preview --port 3002",
     "typecheck": "npx -y -p typescript@5.5.4 tsc -p tsconfig.json --noEmit",

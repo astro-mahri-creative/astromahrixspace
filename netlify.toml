@@ -9,6 +9,8 @@
   # Ensure OpenSSL legacy provider is enabled in the build environment
   NODE_OPTIONS = "--openssl-legacy-provider"
   NPM_FLAGS = "--legacy-peer-deps"
+  # Install devDependencies during build so Vite is available
+  NPM_CONFIG_PRODUCTION = "false"
 
 [dev]
   command = "npm start --prefix frontend"
