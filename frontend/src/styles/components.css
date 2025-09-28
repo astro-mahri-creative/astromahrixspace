@@ -1614,3 +1614,59 @@ Additional responsive helpers for components
     padding: var(--space-4);
   }
 }
+
+/* ===== OPTIMIZED IMAGE COMPONENT ===== */
+.optimized-image {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.optimized-image.loading {
+  filter: blur(5px);
+}
+
+.optimized-image.loaded {
+  filter: none;
+}
+
+.optimized-image.error {
+  opacity: 0.5;
+}
+
+.optimized-image.lazy {
+  background: linear-gradient(90deg, 
+    var(--surface-secondary) 0%, 
+    var(--surface-tertiary) 50%, 
+    var(--surface-secondary) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Aspect ratio containers */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-photo { aspect-ratio: 4 / 3; }
+.aspect-portrait { aspect-ratio: 3 / 4; }
+
+/* Image optimization utilities */
+.img-cover { 
+  object-fit: cover; 
+  width: 100%; 
+  height: 100%; 
+}
+
+.img-contain { 
+  object-fit: contain; 
+  width: 100%; 
+  height: 100%; 
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}

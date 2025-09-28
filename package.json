@@ -16,6 +16,8 @@
     "db:up": "docker compose up -d mongo",
     "db:down": "docker compose down",
     "db:logs": "docker compose logs -f mongo",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:images:dev": "npm install sharp glob --save-dev && npm run optimize:images",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cosmic:setup": "npm run data:destroy && npm run data:import",
     "deploy": "npm run build && echo 'Ready for deployment'"

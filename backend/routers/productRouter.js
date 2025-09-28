@@ -25,6 +25,7 @@ productRouter.get(
     const category = req.query.category || "";
     const seller = req.query.seller || "";
     const order = req.query.order || "";
+    const featured = req.query.featured === "true";
     const min =
       req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
     const max =
@@ -37,6 +38,7 @@ productRouter.get(
     const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
     const sellerFilter = seller ? { seller } : {};
     const categoryFilter = category ? { category } : {};
+    const featuredFilter = featured ? { featured: true } : {};
     const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
     const ratingFilter = rating ? { rating: { $gte: rating } } : {};
     const sortOrder =
@@ -46,11 +48,14 @@ productRouter.get(
         ? { price: -1 }
         : order === "toprated"
         ? { rating: -1 }
+        : order === "featured"
+        ? { featuredOrder: 1, _id: -1 }
         : { _id: -1 };
     const count = await Product.countDocuments({
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
+      ...featuredFilter,
       ...priceFilter,
       ...ratingFilter,
     });
@@ -58,6 +63,7 @@ productRouter.get(
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
+      ...featuredFilter,
       ...priceFilter,
       ...ratingFilter,
     })
@@ -74,6 +80,38 @@ productRouter.get(
   expressAsyncHandler(async (req, res) => {
     const categories = await Product.find().distinct("category");
     res.send(categories);
+  })
+);
+
+productRouter.get(
+  "/featured",
+  expressAsyncHandler(async (req, res) => {
+    const limit = Number(req.query.limit) || 4;
+    const products = await Product.find({ featured: true })
+      .populate("seller", "seller.name seller.logo")
+      .sort({ featuredOrder: 1, _id: -1 })
+      .limit(limit);
+    res.send(products);
+  })
+);
+
+productRouter.put(
+  "/:id/featured",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      product.featured = req.body.featured;
+      product.featuredOrder = req.body.featuredOrder || 999;
+      const updatedProduct = await product.save();
+      res.send({ 
+        message: `Product ${product.featured ? 'featured' : 'unfeatured'}`, 
+        product: updatedProduct 
+      });
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
   })
 );
 
@@ -163,6 +201,30 @@ productRouter.put(
       product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
+      
+      // Handle new enhanced fields
+      if (req.body.hasOwnProperty('featured')) {
+        product.featured = req.body.featured;
+      }
+      if (req.body.hasOwnProperty('featuredOrder')) {
+        product.featuredOrder = req.body.featuredOrder;
+      }
+      if (req.body.tags) {
+        product.tags = req.body.tags;
+      }
+      if (req.body.streamUrl) {
+        product.streamUrl = req.body.streamUrl;
+      }
+      if (req.body.contentType) {
+        product.contentType = req.body.contentType;
+      }
+      if (req.body.unlockRequirement) {
+        product.unlockRequirement = req.body.unlockRequirement;
+      }
+      if (req.body.features) {
+        product.features = req.body.features;
+      }
+      
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
     } else {

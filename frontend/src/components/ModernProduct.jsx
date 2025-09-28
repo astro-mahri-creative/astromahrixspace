@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import OptimizedImage from "./OptimizedImage";
 
 const ModernProduct = ({ product, onAddToCart, onViewDetails }) => {
   const handleAddToCart = (e) => {
@@ -20,11 +21,14 @@ const ModernProduct = ({ product, onAddToCart, onViewDetails }) => {
     <div className="product-card" onClick={handleViewDetails}>
       <div className="product-image-container">
         <Link to={`/product/${product._id}`}>
-          <img
+          <OptimizedImage
             src={product.image || "/images/p1.jpg"}
             alt={product.name}
             className="product-image"
-            loading="lazy"
+            aspectRatio="4/3"
+            sizes="(max-width: 640px) 300px, (max-width: 1024px) 400px, 500px"
+            lazy={true}
+            placeholder="blur"
           />
         </Link>
         {product.badge && <div className="product-badge">{product.badge}</div>}

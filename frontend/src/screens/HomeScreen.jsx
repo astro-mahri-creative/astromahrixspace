@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listProducts } from "../actions/productActions";
+import { listFeaturedProducts } from "../actions/productActions";
 import { listTopSellers } from "../actions/userActions";
 import ModernButton from "../components/ModernButton";
 import ModernCard from "../components/ModernCard";
 import ModernProduct from "../components/ModernProduct";
+import OptimizedImage from "../components/OptimizedImage";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
@@ -13,8 +14,8 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   const [currentFeature, setCurrentFeature] = useState(0);
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const productFeaturedList = useSelector((state) => state.productFeaturedList);
+  const { loading, error, products } = productFeaturedList;
 
   const userTopSellersList = useSelector((state) => state.userTopSellersList);
   const {
@@ -55,7 +56,7 @@ export default function HomeScreen() {
   ];
 
   useEffect(() => {
-    dispatch(listProducts({}));
+    dispatch(listFeaturedProducts(8)); // Get up to 8 featured products
     dispatch(listTopSellers());
   }, [dispatch]);
 
@@ -227,7 +228,7 @@ export default function HomeScreen() {
                 </div>
               ) : (
                 <div className="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                  {products.slice(0, 8).map((product) => (
+                  {products.map((product) => (
                     <ModernProduct
                       key={product._id}
                       product={{
@@ -237,8 +238,8 @@ export default function HomeScreen() {
                         description: product.description,
                         rating: product.rating,
                         reviewCount: product.numReviews,
-                        badge:
-                          product.countInStock === 0 ? "Out of Stock" : null,
+                        badge: product.featured ? "Featured" : 
+                               product.countInStock === 0 ? "Out of Stock" : null,
                         _id: product._id,
                       }}
                     />
@@ -246,7 +247,7 @@ export default function HomeScreen() {
                 </div>
               )}
 
-              {products.length > 8 && (
+              {products.length > 4 && (
                 <div className="products-cta text-center mt-12">
                   <Link to="/products">
                     <ModernButton variant="outline" size="lg">
@@ -292,10 +293,13 @@ export default function HomeScreen() {
                   >
                     <Link to={`/seller/${seller._id}`} className="block">
                       <div className="seller-avatar mb-4">
-                        <img
+                        <OptimizedImage
                           src={seller.seller.logo || "/images/logo2.png"}
                           alt={seller.seller.name}
                           className="w-20 h-20 mx-auto rounded-full object-cover group-hover:scale-110 transition-transform"
+                          aspectRatio="1/1"
+                          sizes="80px"
+                          lazy={true}
                         />
                       </div>
                       <h3 className="seller-name text-lg font-semibold text-text-primary group-hover:text-primary-500 transition-colors">

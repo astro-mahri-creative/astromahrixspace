@@ -45,6 +45,7 @@ import SupportScreen from "./screens/SupportScreen.jsx";
 import CMSDashboardScreen from "./screens/CMSDashboardScreen.jsx";
 import CMSArtistsScreen from "./screens/CMSArtistsScreen.jsx";
 import CMSProductsScreen from "./screens/CMSProductsScreen.jsx";
+import CMSProductEditScreen from "./screens/CMSProductEditScreen.jsx";
 import CMSNavigationScreen from "./screens/CMSNavigationScreen.jsx";
 
 function App() {
@@ -200,6 +201,22 @@ function App() {
               element={
                 <AdminRoute>
                   <CMSProductsScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/products/new"
+              element={
+                <AdminRoute>
+                  <CMSProductEditScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/products/:id"
+              element={
+                <AdminRoute>
+                  <CMSProductEditScreen />
                 </AdminRoute>
               }
             />

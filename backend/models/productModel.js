@@ -26,6 +26,16 @@ const productSchema = new mongoose.Schema(
     rating: { type: Number, required: true },
     numReviews: { type: Number, required: true },
     reviews: [reviewSchema],
+    // Enhanced fields for modern CMS
+    featured: { type: Boolean, default: false },
+    featuredOrder: { type: Number, default: 0 },
+    tags: [{ type: String }],
+    streamUrl: { type: String },
+    contentType: { type: String, enum: ["music", "content", "digital-art", "physical"], default: "music" },
+    unlockRequirement: { type: String, enum: ["free", "purchase", "game"], default: "free" },
+    gameScoreRequired: { type: Number, default: 0 },
+    longDescription: { type: String },
+    features: [{ type: String }],
     // Content / unlock meta used by gameRouter and frontend
     unlockRequirement: {
       type: String,

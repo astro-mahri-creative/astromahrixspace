@@ -18,6 +18,9 @@ import {
   PRODUCT_CATEGORY_LIST_SUCCESS,
   PRODUCT_CATEGORY_LIST_REQUEST,
   PRODUCT_CATEGORY_LIST_FAIL,
+  PRODUCT_FEATURED_LIST_REQUEST,
+  PRODUCT_FEATURED_LIST_SUCCESS,
+  PRODUCT_FEATURED_LIST_FAIL,
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
@@ -57,6 +60,18 @@ export const listProductCategories = () => async (dispatch) => {
     dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
+  }
+};
+
+export const listFeaturedProducts = (limit = 4) => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_FEATURED_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(`/api/products/featured?limit=${limit}`);
+    dispatch({ type: PRODUCT_FEATURED_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_FEATURED_LIST_FAIL, payload: error.message });
   }
 };
 

@@ -18,6 +18,7 @@ import {
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducer,
+  productFeaturedListReducer,
   productListReducer,
   productReviewCreateReducer,
   productUpdateReducer,
@@ -58,6 +59,7 @@ const initialState = {
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  productFeaturedList: productFeaturedListReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
