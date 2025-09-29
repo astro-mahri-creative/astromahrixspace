@@ -1,19 +1,19 @@
 import {
-  CMSNavigation,
-  CMSSiteSettings,
+  Navigation,
+  SiteConfig,
 } from "../models/contentModels/CMSModel.js";
 
 const seedNavigationData = async () => {
   try {
     // Check if navigation already exists
-    const existingNav = await CMSNavigation.findOne({ location: "header" });
+    const existingNav = await Navigation.findOne({ location: "header" });
     if (existingNav) {
       console.log("Navigation data already exists, skipping seed");
       return;
     }
 
     // Create default header navigation
-    const headerNavigation = new CMSNavigation({
+    const headerNavigation = new Navigation({
       name: "Main Header Navigation",
       location: "header",
       description: "Primary navigation menu for the website header",
@@ -65,9 +65,9 @@ const seedNavigationData = async () => {
     await headerNavigation.save();
 
     // Create default site settings if they don't exist
-    const existingSettings = await CMSSiteSettings.findOne();
+    const existingSettings = await SiteConfig.findOne();
     if (!existingSettings) {
-      const siteSettings = new CMSSiteSettings({
+      const siteSettings = new SiteConfig({
         siteName: "astromahrixspace",
         siteDescription: "Cosmic art, music, and interactive experiences",
         logo: "/images/logo2.png",
