@@ -46,7 +46,7 @@ export default function CMSProductEditScreen() {
   // Categories and options
   const categories = [
     "Music",
-    "Exclusive Content", 
+    "Exclusive Content",
     "Digital Art",
     "Merchandise",
   ];
@@ -92,7 +92,8 @@ export default function CMSProductEditScreen() {
         price: product.price || product.pricing?.basePrice || 0,
         image: product.image || product.media?.primaryImage || "",
         description: product.description || product.description?.short || "",
-        longDescription: product.longDescription || product.description?.main || "",
+        longDescription:
+          product.longDescription || product.description?.main || "",
         features: product.features || [],
         countInStock: product.countInStock || 999,
         brand: product.brand || "Astro Mahri",
@@ -110,9 +111,9 @@ export default function CMSProductEditScreen() {
   };
 
   const handleInputChange = (field, value) => {
-    setProductData(prev => ({
+    setProductData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
 
     // Auto-generate slug from name
@@ -123,9 +124,9 @@ export default function CMSProductEditScreen() {
         .replace(/[^a-z0-9\s-]/g, "")
         .replace(/\s+/g, "-")
         .replace(/-+/g, "-");
-      setProductData(prev => ({
+      setProductData((prev) => ({
         ...prev,
-        slug: slug
+        slug: slug,
       }));
     }
   };
@@ -148,9 +149,9 @@ export default function CMSProductEditScreen() {
         },
       });
 
-      setProductData(prev => ({
+      setProductData((prev) => ({
         ...prev,
-        image: data.image
+        image: data.image,
       }));
 
       setSuccess("Image uploaded successfully!");
@@ -164,32 +165,35 @@ export default function CMSProductEditScreen() {
   const handleFeatureChange = (index, value) => {
     const newFeatures = [...productData.features];
     newFeatures[index] = value;
-    setProductData(prev => ({
+    setProductData((prev) => ({
       ...prev,
-      features: newFeatures
+      features: newFeatures,
     }));
   };
 
   const addFeature = () => {
-    setProductData(prev => ({
+    setProductData((prev) => ({
       ...prev,
-      features: [...prev.features, ""]
+      features: [...prev.features, ""],
     }));
   };
 
   const removeFeature = (index) => {
     const newFeatures = productData.features.filter((_, i) => i !== index);
-    setProductData(prev => ({
+    setProductData((prev) => ({
       ...prev,
-      features: newFeatures
+      features: newFeatures,
     }));
   };
 
   const handleTagsChange = (value) => {
-    const tags = value.split(",").map(tag => tag.trim()).filter(tag => tag);
-    setProductData(prev => ({
+    const tags = value
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag);
+    setProductData((prev) => ({
       ...prev,
-      tags
+      tags,
     }));
   };
 
@@ -229,9 +233,11 @@ export default function CMSProductEditScreen() {
       setTimeout(() => {
         navigate("/cms/products");
       }, 1500);
-
     } catch (err) {
-      setError(err.response?.data?.message || `Failed to ${isCreating ? "create" : "update"} product`);
+      setError(
+        err.response?.data?.message ||
+          `Failed to ${isCreating ? "create" : "update"} product`
+      );
     } finally {
       setSaving(false);
     }
@@ -253,10 +259,9 @@ export default function CMSProductEditScreen() {
                 </span>
               </h1>
               <p className="cosmic-subtitle">
-                {isCreating 
+                {isCreating
                   ? "Add a new item to your cosmic catalog"
-                  : "Update your product details and settings"
-                }
+                  : "Update your product details and settings"}
               </p>
             </div>
             <div className="cms-actions">
@@ -294,14 +299,16 @@ export default function CMSProductEditScreen() {
             <ModernCard className="mb-6">
               <div className="admin-form-section">
                 <h3 className="admin-form-section-title">Basic Information</h3>
-                
+
                 <div className="admin-form-row">
                   <div className="admin-form-group">
                     <ModernInput
                       label="Product Name"
                       type="text"
                       value={productData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
                       placeholder="Enter product name"
                       required
                     />
@@ -311,7 +318,9 @@ export default function CMSProductEditScreen() {
                       label="Slug (URL)"
                       type="text"
                       value={productData.slug}
-                      onChange={(e) => handleInputChange("slug", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("slug", e.target.value)
+                      }
                       placeholder="product-url-slug"
                       required
                     />
@@ -323,7 +332,9 @@ export default function CMSProductEditScreen() {
                     <label className="admin-form-label">Category</label>
                     <select
                       value={productData.category}
-                      onChange={(e) => handleInputChange("category", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("category", e.target.value)
+                      }
                       className="admin-select"
                       required
                     >
@@ -341,7 +352,9 @@ export default function CMSProductEditScreen() {
                       step="0.01"
                       min="0"
                       value={productData.price}
-                      onChange={(e) => handleInputChange("price", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("price", e.target.value)
+                      }
                       placeholder="0.00"
                       required
                     />
@@ -353,7 +366,9 @@ export default function CMSProductEditScreen() {
                   <textarea
                     className="admin-form-input admin-form-textarea"
                     value={productData.description}
-                    onChange={(e) => handleInputChange("description", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("description", e.target.value)
+                    }
                     placeholder="Brief product description..."
                     rows="3"
                     required
@@ -365,7 +380,9 @@ export default function CMSProductEditScreen() {
                   <textarea
                     className="admin-form-input admin-form-textarea"
                     value={productData.longDescription}
-                    onChange={(e) => handleInputChange("longDescription", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("longDescription", e.target.value)
+                    }
                     placeholder="Detailed product description..."
                     rows="5"
                   />
@@ -394,7 +411,9 @@ export default function CMSProductEditScreen() {
                       <ModernInput
                         type="text"
                         value={feature}
-                        onChange={(e) => handleFeatureChange(index, e.target.value)}
+                        onChange={(e) =>
+                          handleFeatureChange(index, e.target.value)
+                        }
                         placeholder={`Feature ${index + 1}`}
                       />
                     </div>
@@ -425,7 +444,7 @@ export default function CMSProductEditScreen() {
             <ModernCard className="mb-6">
               <div className="admin-form-section">
                 <h3 className="admin-form-section-title">Product Image</h3>
-                
+
                 {productData.image && (
                   <div className="mb-4">
                     <img
@@ -473,7 +492,9 @@ export default function CMSProductEditScreen() {
                   <label className="admin-form-label">Content Type</label>
                   <select
                     value={productData.contentType}
-                    onChange={(e) => handleInputChange("contentType", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("contentType", e.target.value)
+                    }
                     className="admin-select"
                   >
                     {contentTypes.map((type) => (
@@ -488,7 +509,9 @@ export default function CMSProductEditScreen() {
                   <label className="admin-form-label">Unlock Requirement</label>
                   <select
                     value={productData.unlockRequirement}
-                    onChange={(e) => handleInputChange("unlockRequirement", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("unlockRequirement", e.target.value)
+                    }
                     className="admin-select"
                   >
                     {unlockRequirements.map((req) => (
@@ -506,7 +529,9 @@ export default function CMSProductEditScreen() {
                       type="number"
                       min="0"
                       value={productData.gameScoreRequired}
-                      onChange={(e) => handleInputChange("gameScoreRequired", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("gameScoreRequired", e.target.value)
+                      }
                       placeholder="150"
                     />
                   </div>
@@ -518,7 +543,9 @@ export default function CMSProductEditScreen() {
                     type="number"
                     min="0"
                     value={productData.countInStock}
-                    onChange={(e) => handleInputChange("countInStock", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("countInStock", e.target.value)
+                    }
                     placeholder="999"
                   />
                 </div>
@@ -545,7 +572,9 @@ export default function CMSProductEditScreen() {
                     label="Stream URL (Optional)"
                     type="url"
                     value={productData.streamUrl}
-                    onChange={(e) => handleInputChange("streamUrl", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("streamUrl", e.target.value)
+                    }
                     placeholder="https://soundcloud.com/..."
                   />
                 </div>

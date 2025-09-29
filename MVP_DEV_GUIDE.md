@@ -95,7 +95,9 @@
   - Basic order status tracking
 
 ### 2. Simple Game Implementation (HIGH PRIORITY)
+
 **Estimated effort**: 1-2 days
+
 - [ ] **Playable game for unlock system**:
   - Simple interactive game (memory, reflex, or puzzle-based)
   - Score tracking with 150+ point unlock threshold

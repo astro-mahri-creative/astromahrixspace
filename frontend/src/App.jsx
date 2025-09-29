@@ -257,10 +257,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        <footer className="row center">
-          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
-          <div>All right reserved</div>{" "}
-        </footer>
+        {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
       </div>
     </BrowserRouter>
   );
