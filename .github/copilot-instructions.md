@@ -2,7 +2,15 @@
 
 ## ⚠️ Critical Development Guidelines
 
+**ALWAYS CONSULT MVP_DEV_GUIDE.md FIRST:**
+
+- Before starting any new feature work, check `MVP_DEV_GUIDE.md` for current project status and priorities
+- Focus on MVP-critical features listed in the guide before working on enhancements
+- Follow the established architecture and avoid introducing new frameworks without discussion
+- Update the guide when completing major milestones or features
+
 **ALWAYS ASK BEFORE COMMITTING BREAKING CHANGES:**
+
 - Never commit changes that modify core functionality without explicit user approval
 - Always test changes locally before committing, especially changes to:
   - API endpoints and routing
@@ -14,12 +22,25 @@
 - Test the full user flow (frontend + backend) before committing
 
 **Breaking Change Examples to Always Ask About:**
+
 - Changing product listing logic (featured vs regular products)
 - Modifying API response structures
 - Adding new required dependencies
 - Changing component prop structures
 - Database model field changes
 - Authentication/routing modifications
+
+## 📝 Notes for AI Assistants
+
+When working on this project, always:
+1. **Check MVP_DEV_GUIDE.md first** to understand current progress and priorities
+2. **Follow the established architecture** - don't introduce new frameworks without discussion
+3. **Maintain the cosmic/retro theme** in all UI updates
+4. **Test changes** on both desktop and mobile viewports
+5. **Update MVP_DEV_GUIDE.md** when major features are completed
+6. **Focus on MVP-critical features** before enhancements
+
+Current critical path from MVP guide: **E-commerce functionality → Testing → Launch**
 
 Purpose: Help AI agents quickly understand how to run, and extend this app without guesswork. Keep edits aligned with these patterns and file locations.
 
