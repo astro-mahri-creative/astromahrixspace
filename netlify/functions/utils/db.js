@@ -14,11 +14,7 @@ const connectDB = async () => {
       "mongodb://127.0.0.1/astromahrixspace";
 
     const conn = await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      // Optimize for serverless
       bufferCommands: false,
-      bufferMaxEntries: 0,
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
