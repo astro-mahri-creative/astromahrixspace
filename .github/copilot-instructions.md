@@ -33,6 +33,7 @@
 ## 📝 Notes for AI Assistants
 
 When working on this project, always:
+
 1. **Check MVP_DEV_GUIDE.md first** to understand current progress and priorities
 2. **Follow the established architecture** - don't introduce new frameworks without discussion
 3. **Maintain the cosmic/retro theme** in all UI updates

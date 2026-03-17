@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
 /**
  * OptimizedImage - A modern image component with WebP support, lazy loading, and responsive sizing
- * 
+ *
  * Features:
  * - Automatic WebP/JPEG fallback
  * - Responsive image sizing with srcset
@@ -15,14 +15,14 @@ import PropTypes from 'prop-types';
 const OptimizedImage = ({
   src,
   alt,
-  className = '',
+  className = "",
   width,
   height,
-  aspectRatio = '4/3',
-  sizes = '(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px',
+  aspectRatio = "4/3",
+  sizes = "(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px",
   lazy = true,
   priority = false,
-  placeholder = 'blur',
+  placeholder = "blur",
   quality = 80,
   onLoad,
   onError,
@@ -36,31 +36,35 @@ const OptimizedImage = ({
 
   // Generate responsive image URLs
   const generateImageUrls = (baseSrc) => {
-    if (!baseSrc) return { webp: '', jpeg: '', srcset: '' };
-    
-    const basePath = baseSrc.replace(/\.[^/.]+$/, ''); // Remove extension
-    const isExternal = baseSrc.startsWith('http') || baseSrc.startsWith('//');
-    
+    if (!baseSrc) return { webp: "", jpeg: "", srcset: "" };
+
+    const basePath = baseSrc.replace(/\.[^/.]+$/, ""); // Remove extension
+    const isExternal = baseSrc.startsWith("http") || baseSrc.startsWith("//");
+
     if (isExternal) {
       // For external images, return as-is
       return {
         webp: baseSrc,
         jpeg: baseSrc,
-        srcset: baseSrc
+        srcset: baseSrc,
       };
     }
 
     // Generate different sizes for responsive images
     const sizes = [400, 800, 1200];
-    const webpSrcset = sizes.map(size => `${basePath}-${size}w.webp ${size}w`).join(', ');
-    const jpegSrcset = sizes.map(size => `${basePath}-${size}w.jpg ${size}w`).join(', ');
-    
+    const webpSrcset = sizes
+      .map((size) => `${basePath}-${size}w.webp ${size}w`)
+      .join(", ");
+    const jpegSrcset = sizes
+      .map((size) => `${basePath}-${size}w.jpg ${size}w`)
+      .join(", ");
+
     return {
       webp: `${basePath}.webp`,
       jpeg: `${basePath}.jpg`,
       webpSrcset,
       jpegSrcset,
-      fallback: baseSrc
+      fallback: baseSrc,
     };
   };
 
@@ -76,8 +80,8 @@ const OptimizedImage = ({
         }
       },
       {
-        rootMargin: '50px', // Start loading 50px before image comes into view
-        threshold: 0.1
+        rootMargin: "50px", // Start loading 50px before image comes into view
+        threshold: 0.1,
       }
     );
 
@@ -109,29 +113,33 @@ const OptimizedImage = ({
   const shouldShowImage = isInView || priority;
 
   // Generate CSS for aspect ratio
-  const aspectRatioStyle = aspectRatio ? {
-    aspectRatio: aspectRatio,
-    width: width || '100%',
-    height: height || 'auto'
-  } : {
-    width: width || 'auto',
-    height: height || 'auto'
-  };
+  const aspectRatioStyle = aspectRatio
+    ? {
+        aspectRatio: aspectRatio,
+        width: width || "100%",
+        height: height || "auto",
+      }
+    : {
+        width: width || "auto",
+        height: height || "auto",
+      };
 
   // CSS classes for loading states
   const imageClasses = [
-    'optimized-image',
+    "optimized-image",
     className,
-    isLoaded ? 'loaded' : 'loading',
-    hasError ? 'error' : '',
-    lazy && !isLoaded ? 'lazy' : ''
-  ].filter(Boolean).join(' ');
+    isLoaded ? "loaded" : "loading",
+    hasError ? "error" : "",
+    lazy && !isLoaded ? "lazy" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   // Placeholder component
   const PlaceholderComponent = ({ className, style }) => {
     if (hasError) {
       return (
-        <div 
+        <div
           className={`${className} flex items-center justify-center bg-surface-tertiary text-text-secondary`}
           style={style}
         >
@@ -143,9 +151,9 @@ const OptimizedImage = ({
       );
     }
 
-    if (placeholder === 'blur') {
+    if (placeholder === "blur") {
       return (
-        <div 
+        <div
           className={`${className} bg-gradient-to-br from-surface-secondary to-surface-tertiary animate-pulse`}
           style={style}
         >
@@ -157,15 +165,12 @@ const OptimizedImage = ({
     }
 
     return (
-      <div 
-        className={`${className} bg-surface-secondary`}
-        style={style}
-      />
+      <div className={`${className} bg-surface-secondary`} style={style} />
     );
   };
 
   return (
-    <div 
+    <div
       ref={imgRef}
       className="relative overflow-hidden"
       style={aspectRatioStyle}
@@ -173,12 +178,12 @@ const OptimizedImage = ({
     >
       {/* Show placeholder while loading or if not in view */}
       {(!shouldShowImage || !isLoaded) && (
-        <PlaceholderComponent 
+        <PlaceholderComponent
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 1 }}
         />
       )}
-      
+
       {/* Main image with WebP support */}
       {shouldShowImage && (
         <picture className="w-full h-full">
@@ -201,17 +206,17 @@ const OptimizedImage = ({
             alt={alt}
             className={imageClasses}
             style={{
-              position: isLoaded ? 'relative' : 'absolute',
+              position: isLoaded ? "relative" : "absolute",
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
               zIndex: isLoaded ? 2 : 0,
               opacity: isLoaded ? 1 : 0,
-              transition: 'opacity 0.3s ease-in-out'
+              transition: "opacity 0.3s ease-in-out",
             }}
-            loading={lazy && !priority ? 'lazy' : 'eager'}
+            loading={lazy && !priority ? "lazy" : "eager"}
             onLoad={handleLoad}
             onError={handleError}
           />
@@ -238,7 +243,7 @@ OptimizedImage.propTypes = {
   sizes: PropTypes.string,
   lazy: PropTypes.bool,
   priority: PropTypes.bool,
-  placeholder: PropTypes.oneOf(['blur', 'empty']),
+  placeholder: PropTypes.oneOf(["blur", "empty"]),
   quality: PropTypes.number,
   onLoad: PropTypes.func,
   onError: PropTypes.func,

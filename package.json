@@ -2,7 +2,7 @@
   "name": "astromahrixspace",
   "type": "module",
   "version": "1.0.0",
-  "description": "Ecommerce website like amazon",
+  "description": "Astro Command Center - Gaming-enabled e-commerce platform for music distribution",
   "main": "index.js",
   "scripts": {
     "start": "node backend/server.js",
@@ -26,7 +26,7 @@
     "type": "git",
     "url": "git+https://github.com/astro-mahri-creative/astromahri.space.git"
   },
-  "author": "",
+  "author": "Astro Mahri",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/astro-mahri-creative/astromahri.space/issues"

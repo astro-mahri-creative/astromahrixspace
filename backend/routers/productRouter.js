@@ -105,9 +105,9 @@ productRouter.put(
       product.featured = req.body.featured;
       product.featuredOrder = req.body.featuredOrder || 999;
       const updatedProduct = await product.save();
-      res.send({ 
-        message: `Product ${product.featured ? 'featured' : 'unfeatured'}`, 
-        product: updatedProduct 
+      res.send({
+        message: `Product ${product.featured ? "featured" : "unfeatured"}`,
+        product: updatedProduct,
       });
     } else {
       res.status(404).send({ message: "Product Not Found" });
@@ -201,12 +201,12 @@ productRouter.put(
       product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
-      
+
       // Handle new enhanced fields
-      if (req.body.hasOwnProperty('featured')) {
+      if (req.body.hasOwnProperty("featured")) {
         product.featured = req.body.featured;
       }
-      if (req.body.hasOwnProperty('featuredOrder')) {
+      if (req.body.hasOwnProperty("featuredOrder")) {
         product.featuredOrder = req.body.featuredOrder;
       }
       if (req.body.tags) {
@@ -224,7 +224,7 @@ productRouter.put(
       if (req.body.features) {
         product.features = req.body.features;
       }
-      
+
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
     } else {

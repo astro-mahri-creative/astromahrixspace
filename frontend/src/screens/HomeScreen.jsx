@@ -17,11 +17,12 @@ export default function HomeScreen() {
   // Try featured products first, fallback to regular products
   const productFeaturedList = useSelector((state) => state.productFeaturedList);
   const productList = useSelector((state) => state.productList);
-  
+
   // Use featured products if available, otherwise use regular products
   const featuredProducts = productFeaturedList?.products || [];
   const regularProducts = productList?.products || [];
-  const products = featuredProducts.length > 0 ? featuredProducts : regularProducts;
+  const products =
+    featuredProducts.length > 0 ? featuredProducts : regularProducts;
   const loading = productFeaturedList?.loading || productList?.loading;
   const error = productFeaturedList?.error || productList?.error;
 
@@ -227,7 +228,7 @@ export default function HomeScreen() {
             <div className="loading-container flex justify-center">
               <LoadingBox />
             </div>
-          ) : error ? (
+          ) : error && products.length === 0 ? (
             <div className="error-container text-center">
               <MessageBox variant="danger">{error}</MessageBox>
             </div>
@@ -249,8 +250,12 @@ export default function HomeScreen() {
                         description: product.description,
                         rating: product.rating,
                         reviewCount: product.numReviews,
-                        badge: (featuredProducts.length > 0 && product.featured) ? "Featured" : 
-                               product.countInStock === 0 ? "Out of Stock" : null,
+                        badge:
+                          featuredProducts.length > 0 && product.featured
+                            ? "Featured"
+                            : product.countInStock === 0
+                            ? "Out of Stock"
+                            : null,
                         _id: product._id,
                       }}
                     />
