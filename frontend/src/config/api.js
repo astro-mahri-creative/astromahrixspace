@@ -1,26 +1,17 @@
-// API configuration for different environments
-const API_CONFIG = {
-  development: "http://localhost:8889", // Netlify dev server
-  production: "https://astromahri.space",
-};
-
-const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? API_CONFIG.production
-    : API_CONFIG.development;
+// API configuration
+// Uses relative paths so each deploy (production, preview, dev) calls its own
+// serverless functions automatically — no hardcoded origins needed.
+import axios from "axios";
 
 export const API_ENDPOINTS = {
-  products: `${BASE_URL}/api/products`,
-  game: `${BASE_URL}/api/game`,
-  users: `${BASE_URL}/api/users`,
-  orders: `${BASE_URL}/api/orders`,
+  products: "/api/products",
+  game: "/api/game",
+  users: "/api/users",
+  orders: "/api/orders",
 };
 
 // Axios instance with base configuration
-import axios from "axios";
-
 export const apiClient = axios.create({
-  baseURL: BASE_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
