@@ -305,6 +305,7 @@ enhancedProductSchema.index({
 
 // Virtuals
 enhancedProductSchema.virtual("currentPrice").get(function () {
+  if (!this.pricing) return 0;
   if (this.pricing.isOnSale && this.pricing.salePrice) {
     const now = new Date();
     const saleValid =
@@ -319,10 +320,12 @@ enhancedProductSchema.virtual("currentPrice").get(function () {
 });
 
 enhancedProductSchema.virtual("isOnSale").get(function () {
+  if (!this.pricing) return false;
   return this.pricing.isOnSale && this.currentPrice < this.pricing.basePrice;
 });
 
 enhancedProductSchema.virtual("isInStock").get(function () {
+  if (!this.inventory) return true;
   return (
     !this.inventory.trackInventory ||
     this.inventory.countInStock > 0 ||
@@ -331,6 +334,7 @@ enhancedProductSchema.virtual("isInStock").get(function () {
 });
 
 enhancedProductSchema.virtual("isLowStock").get(function () {
+  if (!this.inventory) return false;
   return (
     this.inventory.trackInventory &&
     this.inventory.countInStock <= this.inventory.lowStockThreshold &&

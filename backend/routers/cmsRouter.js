@@ -257,6 +257,88 @@ cmsRouter.get(
   })
 );
 
+// Get single product
+cmsRouter.get(
+  "/products/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await EnhancedProduct.findById(req.params.id)
+      .populate("artist", "name slug avatar")
+      .populate("meta.createdBy meta.updatedBy", "name email");
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json(product);
+  })
+);
+
+// Create new product
+cmsRouter.post(
+  "/products",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const productData = {
+      ...req.body,
+      "meta.createdBy": req.user._id,
+      "meta.updatedBy": req.user._id,
+    };
+
+    const product = new EnhancedProduct(productData);
+    const savedProduct = await product.save();
+
+    res.status(201).json({
+      message: "Product created successfully",
+      product: savedProduct,
+    });
+  })
+);
+
+// Update product
+cmsRouter.put(
+  "/products/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await EnhancedProduct.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    Object.assign(product, req.body);
+    product.meta.updatedBy = req.user._id;
+
+    const updatedProduct = await product.save();
+
+    res.json({
+      message: "Product updated successfully",
+      product: updatedProduct,
+    });
+  })
+);
+
+// Delete product
+cmsRouter.delete(
+  "/products/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await EnhancedProduct.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    await product.deleteOne();
+
+    res.json({ message: "Product deleted successfully" });
+  })
+);
+
 // Bulk operations for products
 cmsRouter.post(
   "/products/bulk",
@@ -356,6 +438,89 @@ cmsRouter.get(
         hasPrev: page > 1,
       },
     });
+  })
+);
+
+// Get single media item
+cmsRouter.get(
+  "/media/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const media = await MediaItem.findById(req.params.id)
+      .populate("artist", "name slug avatar")
+      .populate("relatedProducts", "name slug")
+      .populate("meta.createdBy meta.updatedBy", "name email");
+
+    if (!media) {
+      return res.status(404).json({ message: "Media item not found" });
+    }
+
+    res.json(media);
+  })
+);
+
+// Create new media item
+cmsRouter.post(
+  "/media",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const mediaData = {
+      ...req.body,
+      "meta.createdBy": req.user._id,
+      "meta.updatedBy": req.user._id,
+    };
+
+    const media = new MediaItem(mediaData);
+    const savedMedia = await media.save();
+
+    res.status(201).json({
+      message: "Media item created successfully",
+      media: savedMedia,
+    });
+  })
+);
+
+// Update media item
+cmsRouter.put(
+  "/media/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const media = await MediaItem.findById(req.params.id);
+
+    if (!media) {
+      return res.status(404).json({ message: "Media item not found" });
+    }
+
+    Object.assign(media, req.body);
+    media.meta.updatedBy = req.user._id;
+
+    const updatedMedia = await media.save();
+
+    res.json({
+      message: "Media item updated successfully",
+      media: updatedMedia,
+    });
+  })
+);
+
+// Delete media item
+cmsRouter.delete(
+  "/media/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const media = await MediaItem.findById(req.params.id);
+
+    if (!media) {
+      return res.status(404).json({ message: "Media item not found" });
+    }
+
+    await media.deleteOne();
+
+    res.json({ message: "Media item deleted successfully" });
   })
 );
 

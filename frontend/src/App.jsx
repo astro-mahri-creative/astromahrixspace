@@ -47,6 +47,8 @@ import CMSArtistsScreen from "./screens/CMSArtistsScreen.jsx";
 import CMSProductsScreen from "./screens/CMSProductsScreen.jsx";
 import CMSProductEditScreen from "./screens/CMSProductEditScreen.jsx";
 import CMSNavigationScreen from "./screens/CMSNavigationScreen.jsx";
+import CMSMediaScreen from "./screens/CMSMediaScreen.jsx";
+import CMSMediaEditScreen from "./screens/CMSMediaEditScreen.jsx";
 
 function App() {
   console.log("[App] mounted");
@@ -217,6 +219,30 @@ function App() {
               element={
                 <AdminRoute>
                   <CMSProductEditScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/media"
+              element={
+                <AdminRoute>
+                  <CMSMediaScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/media/new"
+              element={
+                <AdminRoute>
+                  <CMSMediaEditScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/cms/media/:id"
+              element={
+                <AdminRoute>
+                  <CMSMediaEditScreen />
                 </AdminRoute>
               }
             />
