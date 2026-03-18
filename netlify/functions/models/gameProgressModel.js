@@ -54,4 +54,5 @@ gameProgressSchema.index({ user: 1 });
 
 const GameProgress = mongoose.model("GameProgress", gameProgressSchema);
 
+export { GameProgress };
 export default GameProgress;
