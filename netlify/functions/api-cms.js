@@ -1,5 +1,5 @@
 import { connectDB } from "./utils/db.js";
-import Product from "./models/productModel.js";
+import { Product } from "./models/productModel.js";
 import { SiteConfig } from "./models/cmsModel.js";
 import { isAdmin } from "./utils/auth.js";
 import {

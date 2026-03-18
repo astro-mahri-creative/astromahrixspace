@@ -1,5 +1,5 @@
 import { connectDB } from "./utils/db.js";
-import User from "./models/userModel.js";
+import { User } from "./models/userModel.js";
 import { generateToken, isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,

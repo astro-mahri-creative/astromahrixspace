@@ -1,5 +1,5 @@
 import { connectDB } from "./utils/db.js";
-import Order from "./models/orderModel.js";
+import { Order } from "./models/orderModel.js";
 import { isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,

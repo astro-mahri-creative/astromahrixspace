@@ -1,5 +1,5 @@
 import { connectDB } from "./utils/db.js";
-import Product from "./models/productModel.js";
+import { Product } from "./models/productModel.js";
 import { isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,
