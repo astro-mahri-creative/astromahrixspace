@@ -5,19 +5,31 @@
       "name": "Netlify Dev (Full Stack)",
       "runtimeExecutable": "node",
       "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js", "run", "dev:netlify"],
-      "port": 8890
+      "port": 8890,
+      "preLaunchTask": {
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["scripts/kill-ports.js", "3002", "8890"]
+      }
     },
     {
       "name": "Express Backend",
       "runtimeExecutable": "node",
       "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js", "run", "dev"],
-      "port": 5000
+      "port": 5000,
+      "preLaunchTask": {
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["scripts/kill-ports.js", "5000"]
+      }
     },
     {
       "name": "Vite Frontend",
       "runtimeExecutable": "node",
       "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js", "start", "--prefix", "frontend"],
-      "port": 3002
+      "port": 3002,
+      "preLaunchTask": {
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["scripts/kill-ports.js", "3002"]
+      }
     },
     {
       "name": "MongoDB (Docker)",

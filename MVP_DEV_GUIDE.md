@@ -184,6 +184,35 @@
 - [ ] **Coupon system**: Discount codes and promotions
 - [ ] **Multi-currency support**: International sales capability
 
+## 🔄 Planned Framework Migrations
+
+### Payment System Migration (MEDIUM PRIORITY)
+
+**Current**: PayPal API integration  
+**Target**: Stripe payment processing  
+**Reason**: Better developer experience, more reliable, industry standard  
+**Estimated effort**: 1-2 days  
+**Files affected**:
+
+- `frontend/package.json` (replace `react-paypal-button-v2` with `@stripe/stripe-js`)
+- `backend/server.js` (update config endpoint)
+- Order router payment processing logic
+- Frontend payment components
+
+### Email Service Migration (LOW PRIORITY)
+
+**Current**: Mailgun email service  
+**Target**: Resend or Nodemailer + Gmail SMTP  
+**Reason**: Reduce costs, simpler setup for minimal email usage  
+**Estimated effort**: 0.5-1 day  
+**Files affected**:
+
+- `backend/package.json` (replace `mailgun-js` with `resend` or `nodemailer`)
+- Email utility functions
+- Environment variables configuration
+
+**Note**: Schedule these migrations after MVP launch to avoid disrupting core functionality during critical development phase.
+
 ## 🛠️ Development Guidelines
 
 ### Current Architecture Decisions

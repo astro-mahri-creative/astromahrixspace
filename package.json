@@ -20,7 +20,9 @@
     "optimize:images:dev": "npm install sharp glob --save-dev && npm run optimize:images",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cosmic:setup": "npm run data:destroy && npm run data:import",
-    "deploy": "npm run build && echo 'Ready for deployment'"
+    "deploy": "npm run build && echo 'Ready for deployment'",
+    "setup:production": "node scripts/production-setup.js",
+    "setup:help": "echo 'Production Setup Guide:' && echo '1. npm run setup:production - Check environment variables' && echo '2. Configure MongoDB Atlas at https://cloud.mongodb.com' && echo '3. Set environment variables in Netlify Dashboard'"
   },
   "repository": {
     "type": "git",
