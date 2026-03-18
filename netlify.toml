@@ -19,6 +19,7 @@
   publish = "frontend/build"
   functions = "netlify/functions"
   autoLaunch = false
+  framework = "#custom"
 
 # Redirect all API calls to functions
 [[redirects]]
