@@ -354,5 +354,5 @@ const Achievement =
   mongoose.models.Achievement ||
   mongoose.model("Achievement", achievementSchema);
 
-export { achievementSchema };
+export { Achievement, achievementSchema };
 export default Achievement;

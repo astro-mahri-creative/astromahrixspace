@@ -41,5 +41,5 @@ const GameProgress =
   mongoose.models.GameProgress ||
   mongoose.model("GameProgress", gameProgressSchema);
 
-export { gameProgressSchema };
+export { GameProgress, gameProgressSchema };
 export default GameProgress;

@@ -176,5 +176,5 @@ const LandingSection =
   mongoose.models.LandingSection ||
   mongoose.model("LandingSection", landingSectionSchema);
 
-export { landingSectionSchema };
+export { LandingSection, landingSectionSchema };
 export default LandingSection;

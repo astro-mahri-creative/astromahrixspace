@@ -65,5 +65,5 @@ const Navigation =
   mongoose.models.Navigation ||
   mongoose.model("Navigation", navigationSchema);
 
-export { navigationSchema };
+export { Navigation, navigationSchema };
 export default Navigation;

@@ -190,5 +190,5 @@ artistSchema.methods.archive = function () {
 const Artist =
   mongoose.models.Artist || mongoose.model("Artist", artistSchema);
 
-export { artistSchema };
+export { Artist, artistSchema };
 export default Artist;

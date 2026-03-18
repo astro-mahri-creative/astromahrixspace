@@ -139,5 +139,5 @@ const SiteConfig =
   mongoose.models.SiteConfig ||
   mongoose.model("SiteConfig", siteConfigSchema);
 
-export { siteConfigSchema };
+export { SiteConfig, siteConfigSchema };
 export default SiteConfig;

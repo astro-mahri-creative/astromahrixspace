@@ -474,5 +474,5 @@ const EnhancedProduct =
   mongoose.models.EnhancedProduct ||
   mongoose.model("EnhancedProduct", enhancedProductSchema);
 
-export { enhancedProductSchema };
+export { EnhancedProduct, enhancedProductSchema };
 export default EnhancedProduct;

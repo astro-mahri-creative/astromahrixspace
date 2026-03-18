@@ -1,6 +1,6 @@
 import { connectDB } from "./utils/db.js";
-import GameProgress from "../../shared/models/GameProgress.js";
-import Product from "../../shared/models/Product.js";
+import { GameProgress } from "../../shared/models/GameProgress.js";
+import { Product } from "../../shared/models/Product.js";
 import {
   successResponse,
   errorResponse,
