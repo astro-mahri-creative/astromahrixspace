@@ -1,6 +1,6 @@
 import { connectDB } from "./utils/db.js";
-import { Order } from "./models/orderModel.js";
-import "./models/userModel.js"; // Register User model for populate("user")
+import Order from "../../shared/models/Order.js";
+import "../../shared/models/User.js"; // Register User model for populate("user")
 import { isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,

@@ -1,4 +1,4 @@
-import { Navigation, SiteConfig } from "../models/contentModels/CMSModel.js";
+import { Navigation, SiteConfig } from "../../shared/models/cms/index.js";
 
 const seedNavigationData = async () => {
   try {

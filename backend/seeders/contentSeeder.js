@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import User from "../models/userModel.js";
-import Artist from "../models/contentModels/ArtistModel.js";
-import EnhancedProduct from "../models/contentModels/EnhancedProductModel.js";
-import MediaItem from "../models/contentModels/MediaItemModel.js";
+import User from "../../shared/models/User.js";
+import Artist from "../../shared/models/Artist.js";
+import EnhancedProduct from "../../shared/models/EnhancedProduct.js";
+import MediaItem from "../../shared/models/MediaItem.js";
 
 dotenv.config();
 

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import data from "./data.js";
-import User from "./models/userModel.js";
-import Product from "./models/productModel.js";
-import Order from "./models/orderModel.js";
+import User from "../shared/models/User.js";
+import Product from "../shared/models/Product.js";
+import Order from "../shared/models/Order.js";
 import seedNavigationData from "./seeders/navigationSeeder.js";
 
 dotenv.config();

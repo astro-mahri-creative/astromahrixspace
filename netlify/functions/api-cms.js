@@ -1,14 +1,11 @@
 import { connectDB } from "./utils/db.js";
-import { Product } from "./models/productModel.js";
-import { SiteConfig } from "./models/cmsModel.js";
-import {
-  Artist,
-  EnhancedProduct,
-  MediaItem,
-  Achievement,
-  LandingSection,
-} from "./models/contentModels.js";
-import "./models/userModel.js"; // Register User model for populate
+import Product from "../../shared/models/Product.js";
+import { SiteConfig, LandingSection } from "../../shared/models/cms/index.js";
+import Artist from "../../shared/models/Artist.js";
+import EnhancedProduct from "../../shared/models/EnhancedProduct.js";
+import MediaItem from "../../shared/models/MediaItem.js";
+import Achievement from "../../shared/models/Achievement.js";
+import "../../shared/models/User.js"; // Register User model for populate
 import { isAdmin } from "./utils/auth.js";
 import {
   successResponse,

@@ -470,9 +470,9 @@ enhancedProductSchema.methods.archive = function () {
   return this.save();
 };
 
-const EnhancedProduct = mongoose.model(
-  "EnhancedProduct",
-  enhancedProductSchema
-);
+const EnhancedProduct =
+  mongoose.models.EnhancedProduct ||
+  mongoose.model("EnhancedProduct", enhancedProductSchema);
 
+export { enhancedProductSchema };
 export default EnhancedProduct;

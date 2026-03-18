@@ -468,6 +468,8 @@ mediaItemSchema.methods.archive = function () {
   return this.save();
 };
 
-const MediaItem = mongoose.model("MediaItem", mediaItemSchema);
+const MediaItem =
+  mongoose.models.MediaItem || mongoose.model("MediaItem", mediaItemSchema);
 
+export { mediaItemSchema };
 export default MediaItem;

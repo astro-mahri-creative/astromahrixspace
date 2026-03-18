@@ -1,8 +1,8 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import Order from "../models/orderModel.js";
-import User from "../models/userModel.js";
-import Product from "../models/productModel.js";
+import Order from "../../shared/models/Order.js";
+import User from "../../shared/models/User.js";
+import Product from "../../shared/models/Product.js";
 import {
   isAdmin,
   isAuth,

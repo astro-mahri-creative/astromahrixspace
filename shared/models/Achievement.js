@@ -240,8 +240,6 @@ achievementSchema.virtual("isValid").get(function () {
 });
 
 achievementSchema.virtual("unlockRate").get(function () {
-  // This would need to be calculated against total user base
-  // For now, return a placeholder calculation
   return this.stats.uniqueUnlocks || 0;
 });
 
@@ -284,7 +282,6 @@ achievementSchema.statics.findByRarity = function (rarity) {
 };
 
 achievementSchema.statics.findEligible = function (userProgress) {
-  // Find achievements that user is eligible for but hasn't unlocked
   const { frequencyMatchScore, gamesPlayed, totalPlayTime } = userProgress;
 
   return this.find({
@@ -301,7 +298,7 @@ achievementSchema.statics.findEligible = function (userProgress) {
       },
       {
         "triggerCondition.type": "time_played",
-        "triggerCondition.value": { $lte: Math.floor(totalPlayTime / 60) }, // Convert to minutes
+        "triggerCondition.value": { $lte: Math.floor(totalPlayTime / 60) },
       },
     ],
   }).populate("rewards.productId", "name slug");
@@ -324,9 +321,6 @@ achievementSchema.methods.recordUnlock = function (sessionId) {
   if (!this.stats.firstUnlockedAt) {
     this.stats.firstUnlockedAt = new Date();
   }
-
-  // Note: Unique unlocks would need to be calculated separately
-  // by checking GameProgress collection for unique sessionIds
 
   return this.save();
 };
@@ -352,11 +346,13 @@ achievementSchema.methods.checkEligibility = function (userProgress) {
 
 achievementSchema.methods.getRewards = function () {
   return this.rewards.filter((reward) => {
-    // Filter based on validity, availability, etc.
     return true; // For now, return all rewards
   });
 };
 
-const Achievement = mongoose.model("Achievement", achievementSchema);
+const Achievement =
+  mongoose.models.Achievement ||
+  mongoose.model("Achievement", achievementSchema);
 
+export { achievementSchema };
 export default Achievement;

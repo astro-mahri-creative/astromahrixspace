@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import mongoose from "mongoose";
-import { Navigation, SiteConfig } from "../models/contentModels/CMSModel.js";
+import { Navigation, SiteConfig } from "../../shared/models/cms/index.js";
 import { isAuth, isAdmin } from "../utils.js";
 
 const navigationRouter = express.Router();

@@ -1,5 +1,5 @@
 import { connectDB } from "./utils/db.js";
-import { SiteConfig, Navigation } from "./models/cmsModel.js";
+import { SiteConfig, Navigation } from "../../shared/models/cms/index.js";
 import { isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,

@@ -5,16 +5,16 @@ import mongoose from "mongoose";
  * Provides tools to migrate from existing models to enhanced CMS models
  */
 
-import Artist from "../models/contentModels/ArtistModel.js";
-import EnhancedProduct from "../models/contentModels/EnhancedProductModel.js";
-import Achievement from "../models/contentModels/AchievementModel.js";
-import MediaItem from "../models/contentModels/MediaItemModel.js";
-import { CMS } from "../models/contentModels/CMSModel.js";
+import Artist from "../../shared/models/Artist.js";
+import EnhancedProduct from "../../shared/models/EnhancedProduct.js";
+import Achievement from "../../shared/models/Achievement.js";
+import MediaItem from "../../shared/models/MediaItem.js";
+import { CMS } from "../../shared/models/cms/index.js";
 
 // Legacy models (existing)
-import Product from "../models/productModel.js";
-import User from "../models/userModel.js";
-import GameProgress from "../models/gameProgressModel.js";
+import Product from "../../shared/models/Product.js";
+import User from "../../shared/models/User.js";
+import GameProgress from "../../shared/models/GameProgress.js";
 
 export class CMSMigration {
   /**

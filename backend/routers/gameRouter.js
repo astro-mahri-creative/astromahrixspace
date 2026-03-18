@@ -1,6 +1,6 @@
 import express from "express";
-import GameProgress from "../models/gameProgressModel.js";
-import Product from "../models/productModel.js";
+import GameProgress from "../../shared/models/GameProgress.js";
+import Product from "../../shared/models/Product.js";
 
 const router = express.Router();
 

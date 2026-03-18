@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Navigation } from "./models/contentModels/CMSModel.js";
+import { Navigation } from "../shared/models/cms/index.js";
 
 const seedNavigationData = async () => {
   try {

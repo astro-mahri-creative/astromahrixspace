@@ -187,6 +187,8 @@ artistSchema.methods.archive = function () {
   return this.save();
 };
 
-const Artist = mongoose.model("Artist", artistSchema);
+const Artist =
+  mongoose.models.Artist || mongoose.model("Artist", artistSchema);
 
+export { artistSchema };
 export default Artist;

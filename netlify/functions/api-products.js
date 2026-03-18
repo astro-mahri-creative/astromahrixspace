@@ -1,6 +1,6 @@
 import { connectDB } from "./utils/db.js";
-import { Product } from "./models/productModel.js";
-import "./models/userModel.js"; // Register User model for populate("seller")
+import Product from "../../shared/models/Product.js";
+import "../../shared/models/User.js"; // Register User model for populate("seller")
 import { isAuth, isAdmin } from "./utils/auth.js";
 import {
   successResponse,

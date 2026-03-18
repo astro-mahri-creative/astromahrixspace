@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     slug: { type: String, unique: true, sparse: true },
-    seller: { type: mongoose.Schema.Types.ObjectID, ref: "User" },
+    seller: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     image: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, required: true },
@@ -54,5 +54,5 @@ const productSchema = new mongoose.Schema(
 const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
 
-export { Product };
+export { productSchema };
 export default Product;

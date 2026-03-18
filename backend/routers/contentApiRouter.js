@@ -1,11 +1,11 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import Artist from "../models/contentModels/ArtistModel.js";
-import EnhancedProduct from "../models/contentModels/EnhancedProductModel.js";
-import MediaItem from "../models/contentModels/MediaItemModel.js";
-import Achievement from "../models/contentModels/AchievementModel.js";
-import { CMS } from "../models/contentModels/CMSModel.js";
-import GameProgress from "../models/gameProgressModel.js";
+import Artist from "../../shared/models/Artist.js";
+import EnhancedProduct from "../../shared/models/EnhancedProduct.js";
+import MediaItem from "../../shared/models/MediaItem.js";
+import Achievement from "../../shared/models/Achievement.js";
+import { CMS } from "../../shared/models/cms/index.js";
+import GameProgress from "../../shared/models/GameProgress.js";
 
 const contentApiRouter = express.Router();
 
