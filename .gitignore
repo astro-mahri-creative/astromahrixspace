@@ -42,3 +42,12 @@ coverage/
 package-lock.json.*
 yarn.lock.*
 pnpm-lock.yaml.*
+
+# Claude Code worktrees and session artifacts
+.claude/worktrees/
+
+# Local instructions (session-specific, not committed)
+instructions/
+
+# User uploads (local dev only)
+uploads/
