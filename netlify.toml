@@ -74,6 +74,24 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# ── Branch Deploy Contexts ──────────────────────────────────────────
+# Netlify auto-deploys these branches to their own URLs:
+#   main    → https://astromahri.space  (production)
+#   preview → https://preview--astromahrixspace.netlify.app
+#   dev     → https://dev--astromahrixspace.netlify.app
+
+[context.preview]
+  command = "npm run build"
+  [context.preview.environment]
+    NODE_ENV = "production"
+    NETLIFY_CONTEXT = "preview"
+
+[context.dev]
+  command = "npm run build"
+  [context.dev.environment]
+    NODE_ENV = "production"
+    NETLIFY_CONTEXT = "dev"
+
 # Domain redirect: www -> apex
 [[redirects]]
   from = "https://www.astromahri.space/*"
