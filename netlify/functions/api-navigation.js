@@ -6,6 +6,7 @@ import {
   errorResponse,
   corsPreflightResponse,
 } from "./utils/response.js";
+import { parseApiPath } from "./utils/parsePath.js";
 
 export const handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -18,8 +19,7 @@ export const handler = async (event, context) => {
     await connectDB();
 
     const { httpMethod, path, body } = event;
-    const segments = path.split("/").filter(Boolean);
-    const apiPath = segments.slice(3); // Remove '.netlify', 'functions', 'api-navigation'
+    const apiPath = parseApiPath(path, "navigation");
 
     switch (httpMethod) {
       case "GET":

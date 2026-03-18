@@ -10,8 +10,8 @@ export const handler = async (event) => {
   }
 
   const { path } = event;
-  const segments = path.split("/").filter(Boolean);
-  const apiPath = segments.slice(3); // Remove '.netlify', 'functions', 'api-config'
+  const { parseApiPath } = await import("./utils/parsePath.js");
+  const apiPath = parseApiPath(path, "config");
 
   if (event.httpMethod === "GET") {
     if (apiPath[0] === "paypal") {

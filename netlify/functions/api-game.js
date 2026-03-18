@@ -6,6 +6,7 @@ import {
   errorResponse,
   corsPreflightResponse,
 } from "./utils/response.js";
+import { parseApiPath } from "./utils/parsePath.js";
 
 // Helper to compare ObjectIds safely
 const isObjectIdEqual = (id1, id2) => {
@@ -24,8 +25,7 @@ export const handler = async (event, context) => {
     await connectDB();
 
     const { httpMethod, path, body } = event;
-    const pathSegments = path.split("/").filter(Boolean);
-    const apiPath = pathSegments.slice(3); // Remove '.netlify', 'functions', 'api-game'
+    const apiPath = parseApiPath(path, "game");
 
     switch (httpMethod) {
       case "POST":
