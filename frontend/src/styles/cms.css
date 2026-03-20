@@ -265,6 +265,34 @@
 .search-form {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.search-input-group .search-input {
+  flex: 1;
+  padding-right: 2.5rem;
+}
+
+.search-input-group .search-button {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--cp-muted, #888);
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.search-input-group .search-button:hover {
+  color: var(--cp-cyan, #00ffff);
 }
 
 .search-input,
@@ -272,9 +300,10 @@
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 255, 255, 0.3);
   color: white;
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   transition: all 0.3s ease;
+  font-size: 0.8rem;
 }
 
 .search-input:focus,

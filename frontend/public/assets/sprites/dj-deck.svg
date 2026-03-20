@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="64" viewBox="0 0 256 64">
+  <!-- Frame 1: Deck with disc at 0deg -->
+  <g transform="translate(0,0)">
+    <rect x="8" y="16" width="48" height="40" rx="2" fill="#ff2aad"/>
+    <rect x="12" y="12" width="40" height="8" fill="#cc2290"/>
+    <!-- Turntable circle -->
+    <circle cx="32" cy="38" r="14" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="12" fill="#1a1a2e"/>
+    <!-- Disc line (rotation indicator) -->
+    <rect x="32" y="26" width="2" height="12" fill="#ff2aad"/>
+    <!-- Buttons -->
+    <rect x="14" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="22" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="46" y="50" width="4" height="4" fill="#ff6fd8"/>
+  </g>
+
+  <!-- Frame 2: Disc rotated 90deg -->
+  <g transform="translate(64,0)">
+    <rect x="8" y="16" width="48" height="40" rx="2" fill="#ff2aad"/>
+    <rect x="12" y="12" width="40" height="8" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="14" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="12" fill="#1a1a2e"/>
+    <rect x="44" y="37" width="12" height="2" fill="#ff2aad" transform="rotate(0,32,38)"/>
+    <rect x="14" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="22" y="50" width="4" height="4" fill="#ff6fd8"/>
+    <rect x="46" y="50" width="4" height="4" fill="#16e0bd"/>
+  </g>
+
+  <!-- Frame 3: Disc rotated 180deg -->
+  <g transform="translate(128,0)">
+    <rect x="8" y="16" width="48" height="40" rx="2" fill="#ff2aad"/>
+    <rect x="12" y="12" width="40" height="8" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="14" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="12" fill="#1a1a2e"/>
+    <rect x="32" y="38" width="2" height="12" fill="#ff2aad"/>
+    <rect x="14" y="50" width="4" height="4" fill="#ff6fd8"/>
+    <rect x="22" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="46" y="50" width="4" height="4" fill="#16e0bd"/>
+  </g>
+
+  <!-- Frame 4: Disc rotated 270deg -->
+  <g transform="translate(192,0)">
+    <rect x="8" y="16" width="48" height="40" rx="2" fill="#ff2aad"/>
+    <rect x="12" y="12" width="40" height="8" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="14" fill="#cc2290"/>
+    <circle cx="32" cy="38" r="12" fill="#1a1a2e"/>
+    <rect x="20" y="37" width="12" height="2" fill="#ff2aad"/>
+    <rect x="14" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="22" y="50" width="4" height="4" fill="#16e0bd"/>
+    <rect x="46" y="50" width="4" height="4" fill="#ff6fd8"/>
+  </g>
+</svg>

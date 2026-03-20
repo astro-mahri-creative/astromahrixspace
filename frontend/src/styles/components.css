@@ -393,9 +393,30 @@ Modern navigation with backdrop blur and responsive design
   backdrop-filter: blur(12px);
   background: rgba(49, 46, 55, 0.8);
   border-bottom: 1px solid rgba(197, 7, 127, 0.2);
-  min-height: 60px;
-  max-height: 80px;
+  height: 60px;
   overflow: hidden;
+}
+
+/* Ensure nav flex row stays single-line */
+.app-header .container {
+  height: 100%;
+}
+
+.app-header .container > div {
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+/* Constrain search box so nav items fit in one row */
+.app-header .container > div > div:nth-child(2) {
+  max-width: 200px;
+  flex-shrink: 1;
+  margin: 0 0.5rem;
+}
+
+/* Nav items group shouldn't shrink */
+.app-header .container > div > div:last-child {
+  flex-shrink: 0;
 }
 
 .navbar-brand {

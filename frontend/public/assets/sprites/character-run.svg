@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="128" viewBox="0 0 768 128">
+  <!-- Frame 1: Right leg forward, left back -->
+  <g transform="translate(0,0)">
+    <rect x="52" y="14" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="38" width="32" height="34" fill="#16e0bd"/>
+    <rect x="36" y="40" width="12" height="24" fill="#16e0bd"/>
+    <rect x="80" y="48" width="12" height="20" fill="#16e0bd"/>
+    <!-- Left leg back -->
+    <rect x="42" y="72" width="14" height="28" fill="#16e0bd"/>
+    <rect x="34" y="96" width="14" height="12" fill="#16e0bd"/>
+    <!-- Right leg forward -->
+    <rect x="68" y="72" width="14" height="28" fill="#16e0bd"/>
+    <rect x="76" y="96" width="14" height="12" fill="#16e0bd"/>
+    <circle cx="44" cy="34" r="4" fill="#00ffcc" opacity="0.8"/>
+  </g>
+
+  <!-- Frame 2: Legs passing -->
+  <g transform="translate(128,0)">
+    <rect x="52" y="16" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="40" width="32" height="34" fill="#16e0bd"/>
+    <rect x="34" y="44" width="12" height="22" fill="#16e0bd"/>
+    <rect x="82" y="44" width="12" height="22" fill="#16e0bd"/>
+    <rect x="50" y="74" width="14" height="30" fill="#16e0bd"/>
+    <rect x="64" y="74" width="14" height="30" fill="#16e0bd"/>
+    <circle cx="44" cy="36" r="4" fill="#00ffcc" opacity="0.8"/>
+  </g>
+
+  <!-- Frame 3: Left leg forward, right back -->
+  <g transform="translate(256,0)">
+    <rect x="52" y="14" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="38" width="32" height="34" fill="#16e0bd"/>
+    <rect x="80" y="40" width="12" height="24" fill="#16e0bd"/>
+    <rect x="36" y="48" width="12" height="20" fill="#16e0bd"/>
+    <rect x="68" y="72" width="14" height="28" fill="#16e0bd"/>
+    <rect x="76" y="96" width="14" height="12" fill="#16e0bd"/>
+    <rect x="42" y="72" width="14" height="28" fill="#16e0bd"/>
+    <rect x="34" y="96" width="14" height="12" fill="#16e0bd"/>
+    <circle cx="44" cy="34" r="4" fill="#00ffcc" opacity="0.8"/>
+  </g>
+
+  <!-- Frame 4: Wide stride right -->
+  <g transform="translate(384,0)">
+    <rect x="52" y="12" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="36" width="32" height="34" fill="#16e0bd"/>
+    <rect x="34" y="38" width="12" height="26" fill="#16e0bd"/>
+    <rect x="82" y="46" width="12" height="18" fill="#16e0bd"/>
+    <!-- Wide legs -->
+    <rect x="36" y="70" width="14" height="30" fill="#16e0bd"/>
+    <rect x="28" y="96" width="14" height="12" fill="#16e0bd"/>
+    <rect x="74" y="70" width="14" height="30" fill="#16e0bd"/>
+    <rect x="82" y="96" width="14" height="12" fill="#16e0bd"/>
+    <circle cx="42" cy="32" r="4" fill="#00ffcc" opacity="0.9"/>
+  </g>
+
+  <!-- Frame 5: Legs passing again -->
+  <g transform="translate(512,0)">
+    <rect x="52" y="16" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="40" width="32" height="34" fill="#16e0bd"/>
+    <rect x="82" y="44" width="12" height="22" fill="#16e0bd"/>
+    <rect x="34" y="44" width="12" height="22" fill="#16e0bd"/>
+    <rect x="50" y="74" width="14" height="30" fill="#16e0bd"/>
+    <rect x="64" y="74" width="14" height="30" fill="#16e0bd"/>
+    <circle cx="44" cy="36" r="4" fill="#00ffcc" opacity="0.8"/>
+  </g>
+
+  <!-- Frame 6: Wide stride left -->
+  <g transform="translate(640,0)">
+    <rect x="52" y="12" width="24" height="24" fill="#16e0bd"/>
+    <rect x="48" y="36" width="32" height="34" fill="#16e0bd"/>
+    <rect x="82" y="38" width="12" height="26" fill="#16e0bd"/>
+    <rect x="34" y="46" width="12" height="18" fill="#16e0bd"/>
+    <rect x="74" y="70" width="14" height="30" fill="#16e0bd"/>
+    <rect x="82" y="96" width="14" height="12" fill="#16e0bd"/>
+    <rect x="36" y="70" width="14" height="30" fill="#16e0bd"/>
+    <rect x="28" y="96" width="14" height="12" fill="#16e0bd"/>
+    <circle cx="42" cy="32" r="4" fill="#00ffcc" opacity="0.9"/>
+  </g>
+</svg>

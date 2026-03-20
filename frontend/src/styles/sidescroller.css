@@ -1,0 +1,573 @@
+/* ============================================================
+   Side-Scroller Homepage — Parallax, Character, Obstacles
+   Homepage (LandingScreen) ONLY.  Imported in LandingScreen.jsx
+   ============================================================ */
+
+/* ---------- viewport wrapper ---------- */
+.scroller-viewport {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - var(--nav-height, 60px));
+  overflow: hidden;            /* clip horizontal track; GSAP translates it */
+}
+
+/* The horizontal track the camera slides along */
+.scroller-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  flex-direction: row !important;
+  align-items: center;          /* vertically center obstacles */
+  height: calc(100vh - var(--nav-height, 60px));
+  position: relative;
+  z-index: 5;
+}
+
+/* Prevent grid-container from constraining the scroller */
+.grid-container main:has(.scroller-viewport) {
+  overflow: visible;
+  max-width: none;
+}
+
+/* ---------- parallax layers ---------- */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  will-change: transform;
+  pointer-events: none;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.parallax-layer--sky {
+  z-index: 0;
+  width: 200%;
+  /* CSS gradient fallback; replaced by asset later */
+  background: linear-gradient(
+    180deg,
+    #030510 0%,
+    #070814 30%,
+    #0e1230 60%,
+    #1a1050 100%
+  );
+}
+
+.parallax-layer--mid-city {
+  z-index: 1;
+  width: 400%;
+  background: url("/assets/layers/mid-city.svg") repeat-x bottom left;
+  background-size: 1920px 100%;
+}
+
+.parallax-layer--near-buildings {
+  z-index: 2;
+  width: 500%;
+  background: url("/assets/layers/near-buildings.svg") repeat-x bottom left;
+  background-size: 1920px 100%;
+}
+
+.parallax-layer--ground {
+  z-index: 3;
+  top: auto;
+  bottom: 0;
+  height: 128px;
+  transform: none;             /* override the centering transform */
+  width: 600%;
+  background: url("/assets/layers/ground-tiles.svg") repeat-x bottom left;
+  background-size: 256px 128px;
+}
+
+.parallax-layer--foreground {
+  z-index: 10;
+  width: 300%;
+  opacity: 0.6;
+}
+
+/* ---------- foreground overlay: CRT scanlines + film grain ---------- */
+.fg-overlay-crt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 100%;
+  z-index: 900;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+  mix-blend-mode: multiply;
+}
+
+.fg-overlay-crt::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.12), transparent 2px),
+    radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.08), transparent 2px),
+    radial-gradient(1px 1px at 50px 20px, rgba(255,255,255,0.10), transparent 2px),
+    radial-gradient(1px 1px at 80px 50px, rgba(255,255,255,0.06), transparent 2px),
+    radial-gradient(1px 1px at 10px 80px, rgba(255,255,255,0.09), transparent 2px),
+    radial-gradient(1px 1px at 70px 10px, rgba(255,255,255,0.07), transparent 2px);
+  background-size: 100px 100px;
+  animation: grain-drift 0.8s steps(4) infinite;
+}
+
+@keyframes grain-drift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-5%, -5%); }
+  50%  { transform: translate(3%, -2%); }
+  75%  { transform: translate(-3%, 4%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---------- foreground layer: bottom debris / small objects ---------- */
+.fg-overlay-debris {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 120%;
+  height: 80px;
+  z-index: 800;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.fg-overlay-debris::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  width: 14px;
+  height: 18px;
+  background: #2a2a72;
+  box-shadow:
+    0 -4px 0 0 #3a3a92,
+    calc(14vw) 0 0 0 #1e1e4a,
+    calc(14vw + 1px) -2px 0 0 #16e0bd,
+    calc(37vw) 0 0 5px #2a2a72,
+    calc(37vw + 1px) -8px 0 1px #ff2aad,
+    calc(74vw) 0 0 1px #2a2a72,
+    calc(74vw) -28px 0 0 #16e0bd;
+}
+
+.fg-overlay-debris::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 55%;
+  width: 10px;
+  height: 10px;
+  background: #16163a;
+  box-shadow:
+    12px 4px 0 0 #16163a,
+    -6px 2px 0 2px #16163a,
+    calc(30vw) 0 0 7px #3a3a92,
+    calc(30vw + 1px) -4px 0 0 #ff2aad;
+}
+
+/* layer background fallbacks */
+.parallax-layer--sky        { background-color: #030510; }
+.parallax-layer--ground     { background-color: #16163a; }
+
+/* Layer opacity */
+.parallax-layer--mid-city,
+.parallax-layer--near-buildings {
+  opacity: 0.7;
+}
+
+/* ---------- character ---------- */
+.character-container {
+  position: fixed;
+  left: 50%;
+  bottom: 128px;            /* sits on top of ground layer */
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 128px;
+  height: 128px;
+  pointer-events: none;
+}
+
+.character-sprite {
+  width: 128px;
+  height: 128px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background-size: auto 128px;
+  background-repeat: no-repeat;
+}
+
+/* CSS-drawn placeholder character (used until sprite PNGs are provided) */
+.character-sprite {
+  background: var(--cp-cyan, #16e0bd);
+  clip-path: polygon(
+    50% 0%, 35% 20%, 35% 40%, 15% 40%, 15% 55%,
+    35% 55%, 35% 70%, 20% 100%, 38% 100%, 50% 75%,
+    62% 100%, 80% 100%, 65% 70%, 65% 55%, 85% 55%,
+    85% 40%, 65% 40%, 65% 20%
+  );
+}
+
+/* sprite animation states — swap to sprite sheets when art is ready */
+.character-sprite--idle {
+  /* background-image: url("/assets/sprites/character-idle.png"); */
+  animation: char-idle-bob 1.2s ease-in-out infinite;
+}
+
+.character-sprite--run {
+  /* background-image: url("/assets/sprites/character-run.png"); */
+  animation: char-run-lean 0.3s ease-in-out infinite alternate;
+}
+
+.character-sprite--jump {
+  /* background-image: url("/assets/sprites/character-jump.png"); */
+  animation: char-jump-stretch 0.5s ease-out forwards;
+}
+
+/* placeholder character animations (CSS-only, no sprites needed) */
+@keyframes char-idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+@keyframes char-run-lean {
+  from { transform: skewX(-5deg); }
+  to   { transform: skewX(5deg); }
+}
+
+@keyframes char-jump-stretch {
+  0%   { transform: scaleY(0.8) scaleX(1.1); }
+  40%  { transform: scaleY(1.15) scaleX(0.9); }
+  100% { transform: scaleY(1) scaleX(1); }
+}
+
+/* Sprite-sheet keyframes — uncomment when real sprite PNGs are loaded:
+@keyframes sprite-idle {
+  from { background-position: 0 0; }
+  to   { background-position: -512px 0; }
+}
+@keyframes sprite-run {
+  from { background-position: 0 0; }
+  to   { background-position: -768px 0; }
+}
+@keyframes sprite-jump {
+  from { background-position: 0 0; }
+  to   { background-position: -640px 0; }
+}
+*/
+
+/* DJ deck floating beside character */
+.dj-deck {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  background: var(--cp-magenta, #ff2aad);
+  clip-path: polygon(10% 30%, 90% 30%, 100% 50%, 90% 70%, 10% 70%, 0% 50%);
+  animation: dj-float 2s ease-in-out infinite;
+}
+
+@keyframes dj-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-8px) rotate(3deg); }
+}
+
+/* mic glow in character hand */
+.mic-glow {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cp-cyan, #16e0bd);
+  box-shadow: 0 0 6px var(--cp-cyan, #16e0bd), 0 0 15px var(--cp-cyan, #16e0bd);
+  animation: mic-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes mic-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+}
+
+/* ---------- world obstacles (content blocks) ---------- */
+.world-obstacle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 550px;
+  margin-left: 80vw !important;  /* large spacing — character walks between obstacles */
+  align-self: center;             /* vertically centered in track */
+  z-index: 5;
+  pointer-events: all;
+}
+
+/* first obstacle appears after the full hero screen */
+.world-obstacle:first-child {
+  margin-left: 60vw !important;
+}
+
+.obstacle-frame {
+  position: relative;
+  background: rgba(17, 20, 37, 0.92);
+  border: 3px solid var(--cp-border, #2a2a72);
+  box-shadow:
+    6px 6px 0 var(--cp-border, #2a2a72),
+    inset 0 0 40px rgba(22, 224, 189, 0.04);
+  padding: 1.5rem;
+  min-width: 400px;
+  max-width: 550px;
+  max-height: 60vh;               /* cap at 60% of viewport height */
+  overflow-y: auto;
+}
+
+/* neon accent line on top */
+.obstacle-frame::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cp-cyan, #16e0bd), var(--cp-magenta, #ff2aad));
+}
+
+/* platform the obstacle sits on */
+.obstacle-platform {
+  position: absolute;
+  bottom: -32px;
+  left: -16px;
+  right: -16px;
+  height: 32px;
+  background: var(--cp-border, #2a2a72);
+  border: 2px solid #3a3a92;
+  z-index: -1;
+}
+
+.obstacle-platform::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(22, 224, 189, 0.3),
+    transparent
+  );
+}
+
+/* obstacle type labels */
+.obstacle-label {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cp-cyan, #16e0bd);
+  opacity: 0.7;
+}
+
+/* ---------- hero section (first screen) ---------- */
+.scroller-hero {
+  flex-shrink: 0;
+  width: 100vw;
+  height: calc(100vh - var(--nav-height, 60px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.scroller-hero .retro-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(2rem, 6vw, 5rem);
+  text-align: center;
+  color: var(--cp-white, #e6e6ff);
+  text-shadow:
+    0 0 10px rgba(22, 224, 189, 0.5),
+    0 0 40px rgba(22, 224, 189, 0.2);
+  line-height: 1.2;
+}
+
+.scroller-hero .retro-title .accent {
+  color: var(--cp-magenta, #ff2aad);
+  text-shadow:
+    0 0 10px rgba(255, 42, 173, 0.5),
+    0 0 40px rgba(255, 42, 173, 0.2);
+}
+
+.scroller-hero .retro-subtitle {
+  color: var(--cp-muted, #8888aa);
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ---------- enemy drones (ambient) ---------- */
+.enemy-drone {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  z-index: 8;
+  animation: drone-hover 3s ease-in-out infinite;
+}
+
+@keyframes drone-hover {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* ---------- ground line accent ---------- */
+.ground-line {
+  position: fixed;
+  bottom: 128px;
+  left: 0;
+  width: 400%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--cp-cyan, #16e0bd),
+    var(--cp-magenta, #ff2aad),
+    transparent
+  );
+  opacity: 0.4;
+  z-index: 4;
+}
+
+/* ---------- pixel star field in sky layer ---------- */
+.pixel-stars {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 10% 15%, #ffffff88, transparent 2px),
+    radial-gradient(1px 1px at 25% 35%, #ffffff55, transparent 2px),
+    radial-gradient(1px 1px at 45% 10%, #ffffff77, transparent 2px),
+    radial-gradient(1px 1px at 60% 40%, #ffffff44, transparent 2px),
+    radial-gradient(1px 1px at 75% 20%, #ffffff66, transparent 2px),
+    radial-gradient(1px 1px at 90% 30%, #ffffff55, transparent 2px),
+    radial-gradient(2px 2px at 15% 60%, #16e0bd44, transparent 3px),
+    radial-gradient(2px 2px at 55% 55%, #ff2aad33, transparent 3px),
+    radial-gradient(1px 1px at 35% 80%, #ffffff33, transparent 2px),
+    radial-gradient(1px 1px at 80% 70%, #ffffff44, transparent 2px);
+  animation: star-twinkle 6s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.8; }
+  50%      { opacity: 0.5; }
+}
+
+/* ---------- scroll prompt ---------- */
+.scroll-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 850;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cp-muted, #8888aa);
+  animation: prompt-fade 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes prompt-fade {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.8; }
+}
+
+.scroll-prompt::after {
+  content: " ▼";
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .character-sprite,
+  .dj-deck,
+  .mic-glow,
+  .pixel-stars,
+  .enemy-drone,
+  .scroll-prompt {
+    animation: none !important;
+  }
+
+  .parallax-layer {
+    will-change: auto;
+  }
+
+  /* Fall back to simple vertical layout */
+  .scroller-track {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .world-obstacle {
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  .character-container {
+    display: none;
+  }
+
+  .fg-overlay-crt,
+  .fg-overlay-crt::after {
+    animation: none !important;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .character-container {
+    width: 96px;
+    height: 96px;
+    bottom: 96px;
+  }
+
+  .character-sprite {
+    width: 96px;
+    height: 96px;
+    background-size: auto 96px;
+  }
+
+  .parallax-layer--ground {
+    height: 96px;
+  }
+
+  .obstacle-frame {
+    min-width: 280px;
+    max-width: 90vw;
+    padding: 1.2rem;
+  }
+
+  .world-obstacle {
+    margin-left: 60vw;
+    min-width: 280px;
+  }
+
+  /* hide layers 2 and 5 on mobile for performance */
+  .parallax-layer--mid-city,
+  .parallax-layer--foreground {
+    display: none;
+  }
+}

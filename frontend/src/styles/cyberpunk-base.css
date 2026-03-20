@@ -1,0 +1,369 @@
+/* ============================================================
+   Cyberpunk Base Theme — shared across ALL pages
+   Pixel-art UI, neon accents, dark backdrop, scanline overlay.
+   Does NOT include parallax, character, or side-scroller logic.
+   ============================================================ */
+
+/* ---------- palette ---------- */
+:root {
+  --cp-bg:        #070814;
+  --cp-bg-alt:    #0c0e1a;
+  --cp-surface:   #111425;
+  --cp-border:    #2a2a72;
+  --cp-cyan:      #16e0bd;
+  --cp-magenta:   #ff2aad;
+  --cp-purple:    #7b2fff;
+  --cp-gold:      #f0c040;
+  --cp-white:     #e6e6ff;
+  --cp-muted:     #8888aa;
+  --cp-glow-cyan: 0 0 8px rgba(22,224,189,.45), 0 0 20px rgba(22,224,189,.15);
+  --cp-glow-mag:  0 0 8px rgba(255,42,173,.45), 0 0 20px rgba(255,42,173,.15);
+  --nav-height:   60px;
+}
+
+/* ---------- pixel-art rendering ---------- */
+.pixel-art,
+.pixel-art img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ---------- global body overrides ---------- */
+body {
+  background: var(--cp-bg);
+  color: var(--cp-white);
+}
+
+.grid-container {
+  background: var(--cp-bg);
+}
+
+/* ---------- scanline overlay (subtle, all pages) ---------- */
+.grid-container::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ---------- navigation reskin ---------- */
+.app-header {
+  background: rgba(7, 8, 20, 0.88) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--cp-border) !important;
+  box-shadow: 0 2px 0 var(--cp-border),
+              0 4px 24px rgba(22, 224, 189, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* pixel-step bottom border effect */
+.app-header::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--cp-cyan) 0px,
+    var(--cp-cyan) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  opacity: 0.5;
+}
+
+.navbar-brand span {
+  font-family: "Orbitron", sans-serif !important;
+  color: var(--cp-cyan) !important;
+  text-shadow: var(--cp-glow-cyan);
+  letter-spacing: 2px;
+}
+
+.nav-horizontal-link {
+  color: var(--cp-white) !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.nav-horizontal-link:hover {
+  color: var(--cp-cyan) !important;
+  text-shadow: var(--cp-glow-cyan);
+}
+
+.nav-pipe-divider {
+  color: var(--cp-border) !important;
+  opacity: 0.6;
+}
+
+.nav-icon-only {
+  color: var(--cp-muted) !important;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.nav-icon-only:hover {
+  color: var(--cp-magenta) !important;
+  text-shadow: var(--cp-glow-mag);
+}
+
+/* ---------- pixel-art cards ---------- */
+.card,
+.cosmic-card {
+  background: var(--cp-surface) !important;
+  border: 2px solid var(--cp-border) !important;
+  border-radius: 0 !important;                       /* hard pixel edges */
+  box-shadow: 4px 4px 0 var(--cp-border),
+              inset 0 0 30px rgba(22, 224, 189, 0.03);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover,
+.cosmic-card:hover {
+  box-shadow: 4px 4px 0 var(--cp-cyan),
+              var(--cp-glow-cyan);
+  transform: translate(-1px, -1px);
+}
+
+.card-body h3 {
+  font-family: "Orbitron", sans-serif;
+  color: var(--cp-cyan);
+  text-shadow: 0 0 6px rgba(22, 224, 189, 0.3);
+}
+
+/* ---------- pixel-art buttons ---------- */
+.btn-primary,
+.spaceship-button {
+  background: var(--cp-cyan) !important;
+  color: var(--cp-bg) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  box-shadow: 3px 3px 0 var(--cp-border);
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+
+.btn-primary:hover,
+.spaceship-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--cp-border), var(--cp-glow-cyan);
+}
+
+.btn-primary:active,
+.spaceship-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--cp-border);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--cp-magenta) !important;
+  border: 2px solid var(--cp-magenta) !important;
+  border-radius: 0 !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  box-shadow: 3px 3px 0 rgba(255, 42, 173, 0.3);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 42, 173, 0.1) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(255, 42, 173, 0.3), var(--cp-glow-mag);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--cp-cyan);
+  border: 1px solid var(--cp-border);
+  border-radius: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: var(--cp-cyan);
+  text-shadow: var(--cp-glow-cyan);
+}
+
+/* ---------- section titles ---------- */
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  color: var(--cp-white);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, var(--cp-cyan), var(--cp-magenta), transparent);
+}
+
+/* ---------- neon heading glow pulse ---------- */
+@keyframes cp-glow-pulse {
+  0%, 100% { text-shadow: 0 0 4px rgba(22, 224, 189, 0.3); }
+  50%      { text-shadow: 0 0 12px rgba(22, 224, 189, 0.6), 0 0 30px rgba(22, 224, 189, 0.15); }
+}
+
+.section-title {
+  animation: cp-glow-pulse 4s ease-in-out infinite;
+}
+
+/* ---------- hover glitch on interactive elements ---------- */
+@keyframes cp-glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  animation: cp-glitch 0.3s ease-in-out;
+}
+
+/* ---------- section spacing ---------- */
+.section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.section-lead {
+  color: var(--cp-muted);
+  max-width: 600px;
+}
+
+/* ---------- social links ---------- */
+.social-link {
+  color: var(--cp-muted);
+  font-size: 1.4rem;
+  transition: color 0.2s, text-shadow 0.2s, transform 0.2s;
+}
+
+.social-link:hover {
+  color: var(--cp-cyan);
+  text-shadow: var(--cp-glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* ---------- footer ---------- */
+.footer-section {
+  background: var(--cp-bg-alt);
+  border-top: 2px solid var(--cp-border);
+  padding: 1.5rem 0;
+}
+
+.footer-text {
+  color: var(--cp-muted);
+  font-size: 0.8rem;
+}
+
+.footer-link {
+  color: var(--cp-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--cp-cyan);
+}
+
+/* ---------- inputs ---------- */
+input, select, textarea {
+  background: var(--cp-surface);
+  border: 2px solid var(--cp-border);
+  border-radius: 0;
+  color: var(--cp-white);
+  padding: 8px 12px;
+  font-family: "Inter", sans-serif;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cp-cyan);
+  box-shadow: var(--cp-glow-cyan);
+}
+
+/* ---------- product cards (merch) ---------- */
+.product-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cp-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cp-border);
+  border: 1px solid var(--cp-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cp-cyan);
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .section-title {
+    animation: none !important;
+  }
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    animation: none !important;
+  }
+  .grid-container::after {
+    display: none;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .nav-horizontal-link {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+}

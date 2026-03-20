@@ -1,11 +1,14 @@
-/* Modern Astro Mahri Application Styles */
-/* Import modern design system first */
+/* All @import statements must come first */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");
 @import "./styles/modern-design-system.css";
 @import "./styles/components.css";
 @import "./styles/cms.css";
+@import "./styles/cyberpunk-base.css";
 
-/* Legacy compatibility layer - will be gradually phased out */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");
+/* Prevent browser overscroll bounce at scroll boundaries */
+html, body {
+  overscroll-behavior: none;
+}
 
 /* App layout safety to ensure content is visible */
 .grid-container {

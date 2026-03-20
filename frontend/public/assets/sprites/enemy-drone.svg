@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="64" viewBox="0 0 384 64">
+  <!-- Frame 1: Drone neutral -->
+  <g transform="translate(0,0)">
+    <rect x="24" y="20" width="16" height="16" fill="#7b2fff" transform="rotate(45,32,28)"/>
+    <rect x="16" y="26" width="8" height="4" fill="#7b2fff"/>
+    <rect x="40" y="26" width="8" height="4" fill="#7b2fff"/>
+    <rect x="30" y="24" width="4" height="4" fill="#ff2aad"/>
+  </g>
+
+  <!-- Frame 2: Drone tilt right -->
+  <g transform="translate(64,0)">
+    <rect x="24" y="18" width="16" height="16" fill="#7b2fff" transform="rotate(50,32,26)"/>
+    <rect x="14" y="28" width="8" height="4" fill="#7b2fff"/>
+    <rect x="42" y="24" width="8" height="4" fill="#7b2fff"/>
+    <rect x="30" y="22" width="4" height="4" fill="#ff2aad"/>
+  </g>
+
+  <!-- Frame 3: Drone up -->
+  <g transform="translate(128,0)">
+    <rect x="24" y="16" width="16" height="16" fill="#7b2fff" transform="rotate(45,32,24)"/>
+    <rect x="16" y="22" width="8" height="4" fill="#7b2fff"/>
+    <rect x="40" y="22" width="8" height="4" fill="#7b2fff"/>
+    <rect x="30" y="20" width="4" height="4" fill="#ff2aad"/>
+    <!-- Thruster glow -->
+    <rect x="28" y="36" width="8" height="4" fill="#7b2fff" opacity="0.5"/>
+  </g>
+
+  <!-- Frame 4: Drone tilt left -->
+  <g transform="translate(192,0)">
+    <rect x="24" y="18" width="16" height="16" fill="#7b2fff" transform="rotate(40,32,26)"/>
+    <rect x="14" y="24" width="8" height="4" fill="#7b2fff"/>
+    <rect x="42" y="28" width="8" height="4" fill="#7b2fff"/>
+    <rect x="30" y="22" width="4" height="4" fill="#ff2aad"/>
+  </g>
+
+  <!-- Frame 5: Drone down -->
+  <g transform="translate(256,0)">
+    <rect x="24" y="24" width="16" height="16" fill="#7b2fff" transform="rotate(45,32,32)"/>
+    <rect x="16" y="30" width="8" height="4" fill="#7b2fff"/>
+    <rect x="40" y="30" width="8" height="4" fill="#7b2fff"/>
+    <rect x="30" y="28" width="4" height="4" fill="#ff2aad"/>
+  </g>
+
+  <!-- Frame 6: Drone neutral (flash) -->
+  <g transform="translate(320,0)">
+    <rect x="24" y="20" width="16" height="16" fill="#9b5fff" transform="rotate(45,32,28)"/>
+    <rect x="16" y="26" width="8" height="4" fill="#9b5fff"/>
+    <rect x="40" y="26" width="8" height="4" fill="#9b5fff"/>
+    <rect x="28" y="22" width="8" height="8" fill="#ff2aad"/>
+    <!-- Attack indicator -->
+    <rect x="26" y="38" width="12" height="2" fill="#ff2aad" opacity="0.7"/>
+    <rect x="28" y="40" width="8" height="2" fill="#ff2aad" opacity="0.4"/>
+  </g>
+</svg>
